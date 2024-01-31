@@ -93,7 +93,7 @@ int file_updater(char filename[FILENAME_SIZE], int replace_line, char replace[MA
     int line_cur = 1;
     FILE *fp, *fp_temp;
 
-    strcpy(temp_filename, "temp__");
+    strcpy(temp_filename, "temp_");
     strcat(temp_filename, filename);
 
 
@@ -843,9 +843,9 @@ int residential_property_fwriter(int rent_or_sell) {
     decorator1();
     printf("RESIDENTIAL PROPERTY\n");
     decorator1();
-    printf("Please enter the type of the building\n\n\n\n8) Back\n");
+    printf("Please Enter The Type Of The Building\n\n\n\n8) Back\n");
     decorator1();
-    printf("type :");
+    printf("Type :");
     scanf("%s", type);
     fflush(stdin);
     strlwr(type);
@@ -859,9 +859,9 @@ int residential_property_fwriter(int rent_or_sell) {
     decorator1();
     printf("RESIDENTIAL PROPERTY\n");
     decorator1();
-    printf("Please enter the address of the apartment\n\n\n\n\n");
+    printf("Please Enter The Address Of The Apartment\n\n\n\n\n");
     decorator1();
-    printf("address :");
+    printf("Address :");
     gets(address);
     strlwr(address);
     space_converter(address);
@@ -871,9 +871,9 @@ int residential_property_fwriter(int rent_or_sell) {
         decorator1();
         printf("RESIDENTIAL PROPERTY\n");
         decorator1();
-        printf("Please enter the building's lifespan\n\n\n\n\n");
+        printf("Please Enter The Building's Lifespan\n\n\n\n\n");
         decorator1();
-        printf("lifespan :");
+        printf("Lifespan :");
         scanf("%s", building_lifespan);
         fflush(stdin);
 
@@ -900,9 +900,9 @@ int residential_property_fwriter(int rent_or_sell) {
         decorator1();
         printf("RESIDENTIAL PROPERTY\n");
         decorator1();
-        printf("Please enter building's meterage\n\n\n\n\n");
+        printf("Please Enter Building's Meterage\n\n\n\n\n");
         decorator1();
-        printf("building meterage :");
+        printf("Building Meterage :");
         scanf("%s", building_meterage);
         fflush(stdin);
 
@@ -927,9 +927,9 @@ int residential_property_fwriter(int rent_or_sell) {
     decorator1();
     printf("RESIDENTIAL PROPERTY\n");
     decorator1();
-    printf("Please enter the building municipal area\n\n\n\n\n");
+    printf("Please Enter The Building Municipal Area\n\n\n\n\n");
     decorator1();
-    printf("area :");
+    printf("Area :");
     scanf("%s", building_municipal_area);
     fflush(stdin);
 
@@ -938,9 +938,9 @@ int residential_property_fwriter(int rent_or_sell) {
         decorator1();
         printf("RESIDENTIAL PROPERTY\n");
         decorator1();
-        printf("Please enter the quantity of rooms\n\n\n\n\n");
+        printf("Please Enter The Number Of Rooms\n\n\n\n\n");
         decorator1();
-        printf("rooms :");
+        printf("Rooms :");
         scanf("%s", rooms);
         fflush(stdin);
 
@@ -967,9 +967,9 @@ int residential_property_fwriter(int rent_or_sell) {
         decorator1();
         printf("RESIDENTIAL PROPERTY\n");
         decorator1();
-        printf("What floor is the property on?\n\n\n\n\n");
+        printf("What Floor is The Property on?\n\n\n\n\n");
         decorator1();
-        printf("floor :");
+        printf("Floor :");
         scanf("%s", floor);
         fflush(stdin);
 
@@ -995,9 +995,9 @@ int residential_property_fwriter(int rent_or_sell) {
         decorator1();
         printf("RESIDENTIAL PROPERTY\n");
         decorator1();
-        printf("Please enter the base meterage\n\n\n\n\n");
+        printf("Please Enter The Base Meterage\n\n\n\n\n");
         decorator1();
-        printf("base meterage :");
+        printf("Base Meterage :");
         scanf("%s", base_meterage);
         fflush(stdin);
 
@@ -1024,9 +1024,9 @@ int residential_property_fwriter(int rent_or_sell) {
         decorator1();
         printf("RESIDENTIAL PROPERTY\n");
         decorator1();
-        printf("Please enter the owner's phone number \n\n\n\n\n");
+        printf("Please Enter The Owner's Phone Number \n\n\n\n\n");
         decorator1();
-        printf("phone number :");
+        printf("Phone Number :");
         scanf("%s", owner_phone_number);
         fflush(stdin);
 
@@ -1076,9 +1076,9 @@ int residential_property_fwriter(int rent_or_sell) {
             decorator1();
             printf("RESIDENTIAL PROPERTY\n");
             decorator1();
-            printf("Please enter the property rental_price\n\n\n\n\n");
+            printf("Please Enter The Property's Price\n\n\n\n\n");
             decorator1();
-            printf("rental_price :");
+            printf("Price :");
             scanf("%s", price);
             fflush(stdin);
 
@@ -1145,9 +1145,9 @@ int residential_property_fwriter(int rent_or_sell) {
                 decorator1();
                 printf("RESIDENTIAL PROPERTY\n");
                 decorator1();
-                printf("Please enter the property mortgage\n\n\n\n\n");
+                printf("Please Enter The Property's Mortgage\n\n\n\n\n");
                 decorator1();
-                printf("mortgage :");
+                printf("Mortgage :");
                 scanf("%s", mortgage);
                 fflush(stdin);
 
@@ -1172,9 +1172,9 @@ int residential_property_fwriter(int rent_or_sell) {
                 decorator1();
                 printf("RESIDENTIAL PROPERTY\n");
                 decorator1();
-                printf("Please enter the property rental rental_price\n\n\n\n\n");
+                printf("Please Enter The Property Rental Price\n\n\n\n\n");
                 decorator1();
-                printf("rental rental_price :");
+                printf("Rental Price :");
                 scanf("%s", rental_price);
                 fflush(stdin);
 
@@ -1238,7 +1238,7 @@ int residential_property_fwriter(int rent_or_sell) {
 
         }
         else {
-            printf("NULL");
+            printf("ADDING FAILED E1");
             return 0;
         }
     }
@@ -1257,9 +1257,9 @@ int office_property_fwriter(int rent_or_sell) {
     decorator1();
     printf("OFFICE PROPERTY\n");
     decorator1();
-    printf("Please enter the type of the building\n\n\n\n8) Back\n");
+    printf("Please Enter The Type of The Building\n\n\n\n8) Back\n");
     decorator1();
-    printf("type :");
+    printf("Type :");
     scanf("%s", type);
     fflush(stdin);
     strlwr(type);
@@ -1273,9 +1273,9 @@ int office_property_fwriter(int rent_or_sell) {
     decorator1();
     printf("OFFICE PROPERTY\n");
     decorator1();
-    printf("Please enter the address of the apartment\n\n\n\n\n");
+    printf("Please Enter The Address of The Apartment\n\n\n\n\n");
     decorator1();
-    printf("address :");
+    printf("Address :");
     gets(address);
     strlwr(address);
     space_converter(address);
@@ -1285,9 +1285,9 @@ int office_property_fwriter(int rent_or_sell) {
         decorator1();
         printf("OFFICE PROPERTY\n");
         decorator1();
-        printf("Please enter the building's lifespan\n\n\n\n\n");
+        printf("Please Enter The Building's Lifespan\n\n\n\n\n");
         decorator1();
-        printf("lifespan :");
+        printf("Lifespan :");
         scanf("%s", building_lifespan);
         fflush(stdin);
 
@@ -1314,9 +1314,9 @@ int office_property_fwriter(int rent_or_sell) {
         decorator1();
         printf("OFFICE PROPERTY\n");
         decorator1();
-        printf("Please enter building's meterage\n\n\n\n\n");
+        printf("Please Enter Building's Meterage\n\n\n\n\n");
         decorator1();
-        printf("meterage :");
+        printf("Meterage :");
         scanf("%s", building_meterage);
         fflush(stdin);
 
@@ -1341,9 +1341,9 @@ int office_property_fwriter(int rent_or_sell) {
     decorator1();
     printf("OFFICE PROPERTY\n");
     decorator1();
-    printf("Please enter the building municipal area\n\n\n\n\n");
+    printf("Please Enter The Building Municipal Area\n\n\n\n\n");
     decorator1();
-    printf("area :");
+    printf("Area :");
     scanf("%s", building_municipal_area);
     fflush(stdin);
 
@@ -1352,9 +1352,9 @@ int office_property_fwriter(int rent_or_sell) {
         decorator1();
         printf("OFFICE PROPERTY\n");
         decorator1();
-        printf("Please enter the quantity of rooms\n\n\n\n\n");
+        printf("Please Enter The number of rooms\n\n\n\n\n");
         decorator1();
-        printf("rooms :");
+        printf("Rooms :");
         scanf("%s", rooms);
         fflush(stdin);
 
@@ -1381,9 +1381,9 @@ int office_property_fwriter(int rent_or_sell) {
         decorator1();
         printf("OFFICE PROPERTY\n");
         decorator1();
-        printf("What floor is the property on?\n\n\n\n\n");
+        printf("What Floor is The Property on?\n\n\n\n\n");
         decorator1();
-        printf("floor :");
+        printf("Floor :");
         scanf("%s", floor);
         fflush(stdin);
 
@@ -1409,9 +1409,9 @@ int office_property_fwriter(int rent_or_sell) {
         decorator1();
         printf("OFFICE PROPERTY\n");
         decorator1();
-        printf("Please enter the base meterage\n\n\n\n\n");
+        printf("Please Enter The Base Meterage\n\n\n\n\n");
         decorator1();
-        printf("meterage :");
+        printf("Meterage :");
         scanf("%s", base_meterage);
         fflush(stdin);
 
@@ -1437,9 +1437,9 @@ int office_property_fwriter(int rent_or_sell) {
         decorator1();
         printf("OFFICE PROPERTY\n");
         decorator1();
-        printf("Please enter the owner's phone number \n\n\n\n\n");
+        printf("Please Enter The Owner's Phone Number \n\n\n\n\n");
         decorator1();
-        printf("phone number :");
+        printf("Phone Number :");
         scanf("%s", owner_phone_number);
         fflush(stdin);
 
@@ -1489,9 +1489,9 @@ int office_property_fwriter(int rent_or_sell) {
             decorator1();
             printf("OFFICE PROPERTY\n");
             decorator1();
-            printf("Please enter the property rental_price\n\n\n\n\n");
+            printf("Please Enter The Property's Price\n\n\n\n\n");
             decorator1();
-            printf("rental_price :");
+            printf("Price :");
             scanf("%s", price);
             fflush(stdin);
 
@@ -1558,9 +1558,9 @@ int office_property_fwriter(int rent_or_sell) {
                 decorator1();
                 printf("OFFICE PROPERTY\n");
                 decorator1();
-                printf("Please enter the property mortgage\n\n\n\n\n");
+                printf("Please Enter The Property's Mortgage\n\n\n\n\n");
                 decorator1();
-                printf("mortgage :");
+                printf("Mortgage :");
                 scanf("%s", mortgage);
                 fflush(stdin);
 
@@ -1586,9 +1586,9 @@ int office_property_fwriter(int rent_or_sell) {
                 decorator1();
                 printf("OFFICE PROPERTY\n");
                 decorator1();
-                printf("Please enter the property rental rental_price\n\n\n\n\n");
+                printf("Please Enter The Property Rental Price\n\n\n\n\n");
                 decorator1();
-                printf("rental rental_price :");
+                printf("Rental Price :");
                 scanf("%s", rental_price);
                 fflush(stdin);
 
@@ -1651,7 +1651,7 @@ int office_property_fwriter(int rent_or_sell) {
             system("cls");
         }
         else {
-            printf("NULL");
+            printf("ADDING FAILED E2");
             return 0;
         }
     }
@@ -1670,9 +1670,9 @@ int land_property_fwriter(int rent_or_sell) {
     decorator1();
     printf("LAND PROPERTY\n");
     decorator1();
-    printf("Please enter the type of the land\n\n\n\n8) Back\n");
+    printf("Please Enter The Type Of The Land\n\n\n\n8) Back\n");
     decorator1();
-    printf("type :");
+    printf("Type :");
     scanf("%s", type);
     fflush(stdin);
 
@@ -1685,9 +1685,9 @@ int land_property_fwriter(int rent_or_sell) {
     decorator1();
     printf("LAND PROPERTY\n");
     decorator1();
-    printf("Please enter the address of the land\n\n\n\n\n");
+    printf("Please Enter The Address Of The Land\n\n\n\n\n");
     decorator1();
-    printf("address :");
+    printf("Address :");
     gets(address);
     strlwr(address);
     space_converter(address);
@@ -1697,9 +1697,9 @@ int land_property_fwriter(int rent_or_sell) {
         decorator1();
         printf("LAND PROPERTY\n");
         decorator1();
-        printf("Please enter the building municipal area\n\n\n\n\n");
+        printf("Please Enter The Building Municipal Area\n\n\n\n\n");
         decorator1();
-        printf("area :");
+        printf("Area :");
         scanf("%s", land_municipal_area);
         fflush(stdin);
 
@@ -1724,9 +1724,9 @@ int land_property_fwriter(int rent_or_sell) {
         decorator1();
         printf("LAND PROPERTY\n");
         decorator1();
-        printf("Please enter the land's meterage \n\n\n\n\n");
+        printf("Please Enter The Land's Meterage \n\n\n\n\n");
         decorator1();
-        printf("meterage :");
+        printf("Land Meterage :");
         scanf("%s", land_meterage);
         fflush(stdin);
 
@@ -1752,9 +1752,9 @@ int land_property_fwriter(int rent_or_sell) {
         decorator1();
         printf("LAND PROPERTY\n");
         decorator1();
-        printf("Please enter the owner's phone number \n\n\n\n\n");
+        printf("Please Enter The Owner's Phone Number \n\n\n\n\n");
         decorator1();
-        printf("phone number :");
+        printf("Phone Number :");
         scanf("%s", owner_phone_number);
         fflush(stdin);
 
@@ -1804,9 +1804,9 @@ int land_property_fwriter(int rent_or_sell) {
             decorator1();
             printf("LAND PROPERTY\n");
             decorator1();
-            printf("Please enter the property rental_price\n\n\n\n\n");
+            printf("Please Enter The Property's Price\n\n\n\n\n");
             decorator1();
-            printf("rental_price :");
+            printf("Price :");
             scanf("%s", price);
             fflush(stdin);
 
@@ -1865,9 +1865,9 @@ int land_property_fwriter(int rent_or_sell) {
                 decorator1();
                 printf("LAND PROPERTY\n");
                 decorator1();
-                printf("Please enter the property mortgage\n\n\n\n\n");
+                printf("Please Enter The Property Mortgage\n\n\n\n\n");
                 decorator1();
-                printf("mortgage :");
+                printf("Mortgage :");
                 scanf("%s", mortgage);
                 fflush(stdin);
 
@@ -1892,9 +1892,9 @@ int land_property_fwriter(int rent_or_sell) {
                 decorator1();
                 printf("LAND PROPERTY\n");
                 decorator1();
-                printf("Please enter the property rental rental_price\n\n\n\n\n");
+                printf("Please Enter The Property's Rental Price\n\n\n\n\n");
                 decorator1();
-                printf("rental rental_price :");
+                printf("Rental Price :");
                 scanf("%s", rental_price);
                 fflush(stdin);
 
@@ -1949,7 +1949,7 @@ int land_property_fwriter(int rent_or_sell) {
             system("cls");
         }
         else {
-            printf("NULL");
+            printf("ADDING FAILED E3");
             return 0;
         }
     }
@@ -1964,28 +1964,28 @@ int searching_filter(int building_or_land) {
         decorator1();
         printf("\t\t\t\t   REPORTS\n");
         decorator1();
-        printf("1) Total value\n");
-        printf("2) Number of properties\n");
-        printf("3) Search by municipal area\n");
-        printf("4) Search by base meterage\n");
-        printf("5) Search by rental_price\n");
+        printf("1) Total Value\n");
+        printf("2) Number of Properties\n");
+        printf("3) Search by Municipal Area\n");
+        printf("4) Search by Base Meterage\n");
+        printf("5) Search by Price\n");
 
         if (building_or_land == 1) {
-            printf("6) Search by building lifespan\n");
+            printf("6) Search by Building Lifespan\n");
         }
 
         if (building_or_land == 1) {
-            printf("7) Search by number of rooms\n");
+            printf("7) Search by Number of Rooms\n");
         }
 
         printf("\n8) Back\n");
 
         decorator1();
-        printf("Your choice :");
+        printf("Your Choice :");
         scanf("%d", &choice);
 
         if (choice > 8 || choice < 1) {
-            printf("Wrong input !\nPress any key to continue ...");
+            printf("WRONG INPUT!\nPress any key to continue ...");
             getch();
             continue;
         }
@@ -2004,12 +2004,12 @@ int sell() {
         decorator1();
         printf("\t\t\t\t   SELL\n");
         decorator1();
-        printf("1) Residential property\n");
-        printf("2) Office property\n");
-        printf("3) Land property\n");
+        printf("1) Residential Property\n");
+        printf("2) Office Property\n");
+        printf("3) Land Property\n");
         printf("\n\n8) Back\n");
         decorator1();
-        printf("Your choice :");
+        printf("Your Choice :");
         scanf("%s", choice);
         fflush(stdin);
         strlwr(choice);
@@ -2053,12 +2053,12 @@ int rent() { // this function is for give a property on rent
         decorator1();
         printf("\t\t\t\t   RENT\n");
         decorator1();
-        printf("1) Residential property\n");
-        printf("2) Office property\n");
-        printf("3) Land property\n");
+        printf("1) Residential Property\n");
+        printf("2) Office Property\n");
+        printf("3) Land Property\n");
         printf("\n\n8) Back\n");
         decorator1();
-        printf("Your choice :");
+        printf("Your Choice :");
         scanf("%s", choice);
         fflush(stdin);
         strlwr(choice);
@@ -2112,9 +2112,9 @@ int buy() {
         decorator1();
         printf("\t\t\t\t   BUY\n");
         decorator1();
-        printf("1) Residential property\n");
-        printf("2) Office property\n");
-        printf("3) Land property\n");
+        printf("1) Residential Property\n");
+        printf("2) Office Property\n");
+        printf("3) Land Property\n");
         printf("\n\n8) Back\n");
         decorator1();
         printf("Your choice :");
@@ -2130,9 +2130,9 @@ int buy() {
             switch (searching_choice) {
                 case 3:
                     decorator1();
-                    printf("Enter the municipal area\n\n\n\n\n");
+                    printf("Enter The Municipal Area\n\n\n\n\n");
                     decorator1();
-                    printf("Entered municipal area :");
+                    printf("Entered Municipal Area :");
                     scanf("%s", input_municipal_area);
                     fflush(stdin);
                     system("cls");
@@ -2140,10 +2140,10 @@ int buy() {
 
                 case 6:
                     decorator1();
-                    printf("Enter the building lifespan range\n\n\n\n\n");
+                    printf("Enter The Building Lifespan Range\n\n\n\n\n");
                     decorator1();
 
-                    printf("Entered building lifespan :");
+                    printf("Entered Building Lifespan :");
                     scanf("%d", &input_building_lifespan_max);
 
                     printf("\nEntered building lifespan :");
@@ -2163,12 +2163,12 @@ int buy() {
 
                 case 4:
                     decorator1();
-                    printf("Enter the base meterage range\n\n\n\n\n");
+                    printf("Enter The Base Meterage Range\n\n\n\n\n");
                     decorator1();
                     printf("Entered base meterage :");
                     scanf("%d", &input_base_meterage_max);
 
-                    printf("\nEntered base meterage :");
+                    printf("\nEntered Base Meterage :");
                     scanf("%d", &input_base_meterage_min);
 
                     // max and min returner
@@ -2184,12 +2184,12 @@ int buy() {
 
                 case 5:
                     decorator1();
-                    printf("Enter the rental_price range\n\n\n\n\n");
+                    printf("Enter The Price Range\n\n\n\n\n");
                     decorator1();
-                    printf("Entered rental_price :");
+                    printf("Entered Price :");
                     scanf("%d", &input_price_max);
 
-                    printf("\nEntered rental_price :");
+                    printf("\nEntered Price :");
                     scanf("%d", &input_price_min);
 
                     // max and min returner
@@ -2204,9 +2204,9 @@ int buy() {
 
                 case 7:
                     decorator1();
-                    printf("Enter the number of rooms\n\n\n\n\n");
+                    printf("Enter The Number of Rooms\n\n\n\n\n");
                     decorator1();
-                    printf("Entered number :");
+                    printf("Entered Number :");
                     scanf("%s", input_NO_rooms);
                     fflush(stdin);
                     system("cls");
@@ -2356,7 +2356,7 @@ int buy() {
             }
 
             if (results == 0) {
-                printf("\nNo results found\nPress any key to return ...");
+                printf("\nNo Results Found\nPress any key to return ...");
                 getch();
                 system("cls");
                 continue;
@@ -2388,9 +2388,9 @@ int buy() {
                 switch (searching_choice) {
                     case 3:
                         decorator1();
-                        printf("Enter the municipal area\n\n\n\n\n");
+                        printf("Enter The Municipal Area\n\n\n\n\n");
                         decorator1();
-                        printf("Entered municipal area :");
+                        printf("Entered Municipal Area :");
                         scanf("%s", input_municipal_area);
                         fflush(stdin);
                         system("cls");
@@ -2398,13 +2398,13 @@ int buy() {
 
                     case 6:
                         decorator1();
-                        printf("Enter the building lifespan range\n\n\n\n\n");
+                        printf("Enter The Building Lifespan Range\n\n\n\n\n");
                         decorator1();
 
-                        printf("Entered building lifespan :");
+                        printf("Entered Building Lifespan :");
                         scanf("%d", &input_building_lifespan_max);
 
-                        printf("\nEntered building lifespan :");
+                        printf("\nEntered Building Lifespan :");
                         scanf("%d", &input_building_lifespan_min);
 
                         // max and min returner
@@ -2420,12 +2420,12 @@ int buy() {
 
                     case 4:
                         decorator1();
-                        printf("Enter the base meterage range\n\n\n\n\n");
+                        printf("Enter The Base Meterage Range\n\n\n\n\n");
                         decorator1();
-                        printf("Entered base meterage :");
+                        printf("Entered Base Meterage :");
                         scanf("%d", &input_base_meterage_max);
 
-                        printf("\nEntered base meterage :");
+                        printf("\nEntered Base Meterage :");
                         scanf("%d", &input_base_meterage_min);
 
                         // max and min returner
@@ -2441,12 +2441,12 @@ int buy() {
 
                     case 5:
                         decorator1();
-                        printf("Enter the rental_price range\n\n\n\n\n");
+                        printf("Enter The Price Range\n\n\n\n\n");
                         decorator1();
-                        printf("Entered rental_price :");
+                        printf("Entered Price :");
                         scanf("%d", &input_price_max);
 
-                        printf("\nEntered rental_price :");
+                        printf("\nEntered Price :");
                         scanf("%d", &input_price_min);
 
                         // max and min returner
@@ -2461,9 +2461,9 @@ int buy() {
 
                     case 7:
                         decorator1();
-                        printf("Enter the number of rooms\n\n\n\n\n");
+                        printf("Enter The Number Of Rooms\n\n\n\n\n");
                         decorator1();
-                        printf("Entered number :");
+                        printf("Entered Number :");
                         scanf("%s", input_NO_rooms);
                         fflush(stdin);
                         system("cls");
@@ -2612,7 +2612,7 @@ int buy() {
                 }
 
                 if (results == 0) {
-                    printf("\nNo results found\nPress any key to return ...");
+                    printf("\nNo Results Found\nPress any key to return ...");
                     getch();
                     system("cls");
                     continue;
@@ -2644,9 +2644,9 @@ int buy() {
                     switch (searching_choice) {
                         case 3:
                             decorator1();
-                            printf("Enter the municipal area\n\n\n\n\n");
+                            printf("Enter The Municipal Area\n\n\n\n\n");
                             decorator1();
-                            printf("Entered municipal area :");
+                            printf("Entered Municipal Area :");
                             scanf("%s", input_municipal_area);
                             fflush(stdin);
                             system("cls");
@@ -2654,12 +2654,12 @@ int buy() {
 
                         case 4:
                             decorator1();
-                            printf("Enter the land meterage range\n\n\n\n\n");
+                            printf("Enter The Land Meterage Range\n\n\n\n\n");
                             decorator1();
-                            printf("Entered land meterage :");
+                            printf("Entered Land Meterage :");
                             scanf("%d", &input_base_meterage_max);
 
-                            printf("\nEntered land meterage :");
+                            printf("\nEntered Land Meterage :");
                             scanf("%d", &input_base_meterage_min);
 
                             // max and min returner
@@ -2674,12 +2674,12 @@ int buy() {
 
                         case 5:
                             decorator1();
-                            printf("Enter the rental_price range\n\n\n\n\n");
+                            printf("Enter The Price Range\n\n\n\n\n");
                             decorator1();
-                            printf("Entered rental_price :");
+                            printf("Entered Price :");
                             scanf("%d", &input_price_max);
 
-                            printf("\nEntered rental_price :");
+                            printf("\nEntered Price :");
                             scanf("%d", &input_price_min);
 
                             // max and min returner
@@ -2785,7 +2785,7 @@ int buy() {
 
 
                     if (results == 0) {
-                        printf("\nNo results found\nPress any key to return ...");
+                        printf("\nNo Results Found\nPress any key to return ...");
                         getch();
                         system("cls");
                         continue;
@@ -2842,9 +2842,9 @@ int renting() {
         decorator1();
         printf("\t\t\t\t   RENTING\n");
         decorator1();
-        printf("1) Residential property\n");
-        printf("2) Office property\n");
-        printf("3) Land property\n");
+        printf("1) Residential Property\n");
+        printf("2) Office Property\n");
+        printf("3) Land Property\n");
         printf("\n\n8) Back\n");
         decorator1();
         printf("Your choice :");
@@ -2860,9 +2860,9 @@ int renting() {
             switch (searching_choice) {
                 case 3:
                     decorator1();
-                    printf("Enter the municipal area\n\n\n\n\n");
+                    printf("Enter The Municipal Area\n\n\n\n\n");
                     decorator1();
-                    printf("Entered municipal area :");
+                    printf("Entered Municipal Area :");
                     scanf("%s", input_municipal_area);
                     fflush(stdin);
                     system("cls");
@@ -2870,13 +2870,13 @@ int renting() {
 
                 case 6:
                     decorator1();
-                    printf("Enter the building lifespan range\n\n\n\n\n");
+                    printf("Enter The Building Lifespan Range\n\n\n\n\n");
                     decorator1();
 
-                    printf("Entered building lifespan :");
+                    printf("Entered Building Lifespan :");
                     scanf("%d", &input_building_lifespan_max);
 
-                    printf("\nEntered building lifespan :");
+                    printf("\nEntered Building Lifespan :");
                     scanf("%d", &input_building_lifespan_min);
 
                     // max and min returner
@@ -2893,12 +2893,12 @@ int renting() {
 
                 case 4:
                     decorator1();
-                    printf("Enter the base meterage range\n\n\n\n\n");
+                    printf("Enter The Base Meterage Range\n\n\n\n\n");
                     decorator1();
-                    printf("Entered base meterage :");
+                    printf("Entered Base Meterage :");
                     scanf("%d", &input_base_meterage_max);
 
-                    printf("\nEntered base meterage :");
+                    printf("\nEntered Base Meterage :");
                     scanf("%d", &input_base_meterage_min);
 
                     // max and min returner
@@ -2914,23 +2914,23 @@ int renting() {
 
                 case 5:
                     decorator1();
-                    printf("Enter the mortgage range\n\n\n\n\n");
+                    printf("Enter The Mortgage Range\n\n\n\n\n");
                     decorator1();
-                    printf("Entered mortgage :");
+                    printf("Entered Mortgage :");
                     scanf("%d", &input_mortgage_max);
 
-                    printf("\nEntered mortgage :");
+                    printf("\nEntered Mortgage :");
                     scanf("%d", &input_mortgage_min);
 
                     system("cls");
 
                     decorator1();
-                    printf("Enter the rental rental_price range\n\n\n\n\n");
+                    printf("Enter The Rental Price Range\n\n\n\n\n");
                     decorator1();
-                    printf("Entered rental rental_price :");
+                    printf("Entered Rental Price :");
                     scanf("%d", &input_rental_price_max);
 
-                    printf("\nEntered rental rental_price :");
+                    printf("\nEntered Rental Price :");
                     scanf("%d", &input_rental_price_min);
 
                     // max and min returner
@@ -2951,9 +2951,9 @@ int renting() {
 
                 case 7:
                     decorator1();
-                    printf("Enter the number of rooms\n\n\n\n\n");
+                    printf("Enter The Number of Rooms\n\n\n\n\n");
                     decorator1();
-                    printf("Entered number :");
+                    printf("Entered Number :");
                     scanf("%s", input_NO_rooms);
                     fflush(stdin);
                     system("cls");
@@ -3111,7 +3111,7 @@ int renting() {
             }
 
             if (results == 0) {
-                printf("\nNo results found\nPress any key to return ...");
+                printf("\nNo Results Found\nPress any key to return ...");
                 getch();
                 system("cls");
                 continue;
@@ -3143,9 +3143,9 @@ int renting() {
                 switch (searching_choice) {
                     case 3:
                         decorator1();
-                        printf("Enter the municipal area\n\n\n\n\n");
+                        printf("Enter The Municipal Area\n\n\n\n\n");
                         decorator1();
-                        printf("Entered municipal area :");
+                        printf("Entered Municipal Area :");
                         scanf("%s", input_municipal_area);
                         fflush(stdin);
                         system("cls");
@@ -3153,13 +3153,13 @@ int renting() {
 
                     case 6:
                         decorator1();
-                        printf("Enter the building lifespan range\n\n\n\n\n");
+                        printf("Enter The Building Lifespan Range\n\n\n\n\n");
                         decorator1();
 
-                        printf("Entered building lifespan :");
+                        printf("Entered Building Lifespan :");
                         scanf("%d", &input_building_lifespan_max);
 
-                        printf("\nEntered building lifespan :");
+                        printf("\nEntered Building Lifespan :");
                         scanf("%d", &input_building_lifespan_min);
 
                         // max and min returner
@@ -3175,12 +3175,12 @@ int renting() {
 
                     case 4:
                         decorator1();
-                        printf("Enter the base meterage range\n\n\n\n\n");
+                        printf("Enter The Base Meterage Range\n\n\n\n\n");
                         decorator1();
-                        printf("Entered base meterage :");
+                        printf("Entered Base Meterage :");
                         scanf("%d", &input_base_meterage_max);
 
-                        printf("\nEntered base meterage :");
+                        printf("\nEntered Base Meterage :");
                         scanf("%d", &input_base_meterage_min);
 
                         // max and min returner
@@ -3196,22 +3196,22 @@ int renting() {
 
                     case 5:
                         decorator1();
-                        printf("Enter the rental rental_price range\n\n\n\n\n");
+                        printf("Enter The Rental Price Range\n\n\n\n\n");
                         decorator1();
-                        printf("Entered rental rental_price :");
+                        printf("Entered Rental Price :");
                         scanf("%d", &input_rental_price_max);
 
-                        printf("\nEntered rental_price :");
+                        printf("\nEntered Rental Price :");
                         scanf("%d", &input_rental_price_min);
 
                         system("cls");
                         decorator1();
-                        printf("Enter the mortgage range\n\n\n\n\n");
+                        printf("Enter The Mortgage Range\n\n\n\n\n");
                         decorator1();
-                        printf("Entered mortgage :");
+                        printf("Entered Mortgage :");
                         scanf("%d", &input_mortgage_max);
 
-                        printf("\nEntered mortgage :");
+                        printf("\nEntered Mortgage :");
                         scanf("%d", &input_mortgage_min);
 
                         // max and min returner
@@ -3232,9 +3232,9 @@ int renting() {
 
                     case 7:
                         decorator1();
-                        printf("Enter the number of rooms\n\n\n\n\n");
+                        printf("Enter The Number of Rooms\n\n\n\n\n");
                         decorator1();
-                        printf("Entered number :");
+                        printf("Entered Number :");
                         scanf("%s", input_NO_rooms);
                         fflush(stdin);
                         system("cls");
@@ -3391,7 +3391,7 @@ int renting() {
                 }
 
                 if (results == 0) {
-                    printf("\nNo results found\nPress any key to return ...");
+                    printf("\nNo Results Found\nPress any key to return ...");
                     getch();
                     system("cls");
                     continue;
@@ -3423,9 +3423,9 @@ int renting() {
                     switch (searching_choice) {
                         case 3:
                             decorator1();
-                            printf("Enter the municipal area\n\n\n\n\n");
+                            printf("Enter The Municipal Area\n\n\n\n\n");
                             decorator1();
-                            printf("Entered municipal area :");
+                            printf("Entered Municipal Area :");
                             scanf("%s", input_municipal_area);
                             fflush(stdin);
                             system("cls");
@@ -3433,12 +3433,12 @@ int renting() {
 
                         case 4:
                             decorator1();
-                            printf("Enter the land meterage range\n\n\n\n\n");
+                            printf("Enter The Land Meterage Range\n\n\n\n\n");
                             decorator1();
-                            printf("Entered land meterage :");
+                            printf("Entered Land Meterage :");
                             scanf("%d", &input_base_meterage_max);
 
-                            printf("\nEntered land meterage :");
+                            printf("\nEntered Land Meterage :");
                             scanf("%d", &input_base_meterage_min);
 
                             // max and min returner
@@ -3453,23 +3453,23 @@ int renting() {
 
                         case 5:
                             decorator1();
-                            printf("Enter the rental price range\n\n\n\n\n");
+                            printf("Enter The Rental Price Range\n\n\n\n\n");
                             decorator1();
-                            printf("Entered rental price :");
+                            printf("Entered Rental Price :");
                             scanf("%d", &input_rental_price_max);
 
-                            printf("\nEntered rental_price :");
+                            printf("\nEntered Rental Price :");
                             scanf("%d", &input_rental_price_min);
 
                             system("cls");
 
                             decorator1();
-                            printf("Enter the mortgage range\n\n\n\n\n");
+                            printf("Enter The Mortgage Range\n\n\n\n\n");
                             decorator1();
-                            printf("Entered mortgage :");
+                            printf("Entered Mortgage :");
                             scanf("%d", &input_mortgage_max);
 
-                            printf("\nEntered mortgage :");
+                            printf("\nEntered Mortgage :");
                             scanf("%d", &input_mortgage_min);
 
                             // max and min returner
@@ -3585,7 +3585,7 @@ int renting() {
 
 
                     if (results == 0) {
-                        printf("\nNo results found\nPress any key to return ...");
+                        printf("\nNo Results Found\nPress any key to return ...");
                         getch();
                         system("cls");
                         continue;
@@ -3636,11 +3636,11 @@ int add_item() {
         decorator1();
         printf("\t\t\t\t   ADD AN ITEM\n");
         decorator1();
-        printf("1) Sell a property\n");
-        printf("2) Give a property on rent\n");
+        printf("1) Add A Property For Sell\n");
+        printf("2) Add A Property For Rent\n");
         printf("\n\n\n8) Back\n");
         decorator1();
-        printf("Your choice :");
+        printf("Your Choice :");
         scanf("%s", choice);
         fflush(stdin);
         strlwr(choice);
@@ -3685,12 +3685,12 @@ int remove_sell_property() {
         decorator1();
         printf("\t\t\t\t   REMOVE A PROPERTY FROM THE SELL LIST\n");
         decorator1();
-        printf("1) Residential property\n");
-        printf("2) Office property\n");
-        printf("3) Land property\n");
+        printf("1) Residential Property\n");
+        printf("2) Office Property\n");
+        printf("3) Land Property\n");
         printf("\n\n8) Back\n");
         decorator1();
-        printf("Your choice :");
+        printf("Your Choice :");
         scanf("%s", choice);
         fflush(stdin);
         strlwr(choice);
@@ -3769,13 +3769,13 @@ int remove_sell_property() {
             fclose(fp);
 
             if (NO_property == 0) {
-                printf("\nNo results found\nPress any key to go back ...");
+                printf("\nNo Results Found\nPress any key to go back ...");
                 getch();
                 system("cls");
                 continue;
             }
 
-            printf("Enter the number of the property you want to remove :");
+            printf("Enter The Number of The Property You Want To Remove :");
             scanf("%d", &input_NO_property);
 
 
@@ -3783,13 +3783,13 @@ int remove_sell_property() {
                 file_updater("sell_residential_properties.txt", 1 + (input_NO_property - 1) * 12, "STATUS: DEACTIVE");
                 system("cls");
                 decorator2();
-                printf("Property removed successfully\nPress any key to go back ...\n");
+                printf("Property Removed Successfully\nPress any key to return ...\n");
                 decorator2();
                 getch();
                 continue;
             }
             else {
-                printf("Wrong input !\nPress any key to go back ...");
+                printf("WRONG INPUT!\nPress any key to return ...");
                 getch();
                 continue;
             }
@@ -3870,13 +3870,13 @@ int remove_sell_property() {
                 fclose(fp);
 
                 if (NO_property == 0) {
-                    printf("\nNo results found\nPress any key to go back ...");
+                    printf("\nNo Results Found\nPress any key to return ...");
                     getch();
                     system("cls");
                     continue;
                 }
 
-                printf("Enter the number of the property you want to remove :");
+                printf("Enter The Number of The Property You Want To Remove :");
                 scanf("%d", &input_NO_property);
 
 
@@ -3884,13 +3884,13 @@ int remove_sell_property() {
                     file_updater("sell_office_properties.txt", 1 + (input_NO_property - 1) * 12, "STATUS: DEACTIVE");
                     system("cls");
                     decorator2();
-                    printf("Property removed successfully\nPress any key to go back ...\n");
+                    printf("Property Removed Successfully\nPress any key to return ...\n");
                     decorator2();
                     getch();
                     continue;
                 }
                 else {
-                    printf("Wrong input !\nPress any key to go back ...");
+                    printf("WRONG INPUT!\nPress any key to go back ...");
                     getch();
                     continue;
                 }
@@ -3960,13 +3960,13 @@ int remove_sell_property() {
                     fclose(fp);
 
                     if (NO_property == 0) {
-                        printf("\nNo results found\nPress any key to go back ...");
+                        printf("\nNo Results Found\nPress any key to return ...");
                         getch();
                         system("cls");
                         continue;
                     }
 
-                    printf("Enter the number of the property you want to remove :");
+                    printf("Enter The Number of The Property You Want To Remove :");
                     scanf("%d", &input_NO_property);
 
 
@@ -3974,13 +3974,13 @@ int remove_sell_property() {
                         file_updater("sell_land_properties.txt", 1 + (input_NO_property - 1) * 8, "STATUS: DEACTIVE");
                         system("cls");
                         decorator2();
-                        printf("Property removed successfully\nPress any key to go back ...\n");
+                        printf("Property Removed Successfully\nPress any key to go back ...\n");
                         decorator2();
                         getch();
                         continue;
                     }
                     else {
-                        printf("Wrong input !\nPress any key to go back ...");
+                        printf("WRONG INPUT!\nPress any key to go back ...");
                         getch();
                         continue;
                     }
@@ -3998,7 +3998,7 @@ int remove_sell_property() {
                     }
 
                     else {
-                        printf("*** Wrong Input ***\nPress any key to continue ...");
+                        printf("*** WRONG INPUT ***\nPress any key to continue ...");
                         getch();
                         system("cls");
                     }
@@ -4020,9 +4020,9 @@ int remove_rent_property() {
         decorator1();
         printf("\t\t\t\t   REMOVE A PROPERTY FROM THE RENTAL PROPERTIES LIST\n");
         decorator1();
-        printf("1) Residential property\n");
-        printf("2) Office property\n");
-        printf("3) Land property\n");
+        printf("1) Residential Property\n");
+        printf("2) Office Property\n");
+        printf("3) Land Property\n");
         printf("\n\n8) Back\n");
         decorator1();
         printf("Your choice :");
@@ -4107,13 +4107,13 @@ int remove_rent_property() {
             fclose(fp);
 
             if (NO_property == 0) {
-                printf("\nNo results found\nPress any key to go back ...");
+                printf("\nNo Results Found\nPress any key to go back ...");
                 getch();
                 system("cls");
                 continue;
             }
 
-            printf("Enter the number of the property you want to remove :");
+            printf("Enter The Number of The Property You Want To Remove :");
             scanf("%d", &input_NO_property);
 
 
@@ -4121,13 +4121,13 @@ int remove_rent_property() {
                 file_updater("sell_residential_properties.txt", 1 + (input_NO_property - 1) * 13, "STATUS: DEACTIVE");
                 system("cls");
                 decorator2();
-                printf("Property removed successfully\nPress any key to go back ...\n");
+                printf("Property Removed Successfully\nPress any key to go back ...\n");
                 decorator2();
                 getch();
                 continue;
             }
             else {
-                printf("Wrong input !\nPress any key to go back ...");
+                printf("WRONG INPUT!\nPress any key to go back ...");
                 getch();
                 continue;
             }
@@ -4212,13 +4212,13 @@ int remove_rent_property() {
                 fclose(fp);
 
                 if (NO_property == 0) {
-                    printf("\nNo results found\nPress any key to go back ...");
+                    printf("\nNo Results Found\nPress any key to go back ...");
                     getch();
                     system("cls");
                     continue;
                 }
 
-                printf("Enter the number of the property you want to remove :");
+                printf("Enter The Number of The Property You Want To Remove :");
                 scanf("%d", &input_NO_property);
 
 
@@ -4226,13 +4226,13 @@ int remove_rent_property() {
                     file_updater("rent_office_properties.txt", 1 + (input_NO_property - 1) * 13, "STATUS: DEACTIVE");
                     system("cls");
                     decorator2();
-                    printf("Property removed successfully\nPress any key to go back ...\n");
+                    printf("Property Removed Successfully\nPress any key to go back ...\n");
                     decorator2();
                     getch();
                     continue;
                 }
                 else {
-                    printf("Wrong input !\nPress any key to go back ...");
+                    printf("Wrong input !\nPress any key to return ...");
                     getch();
                     continue;
                 }
@@ -4305,13 +4305,13 @@ int remove_rent_property() {
                     fclose(fp);
 
                     if (NO_property == 0) {
-                        printf("\nNo results found\nPress any key to go back ...");
+                        printf("\nNo Results Found\nPress any key to go back ...");
                         getch();
                         system("cls");
                         continue;
                     }
 
-                    printf("Enter the number of the property you want to remove :");
+                    printf("Enter The Number of The Property You Want To Remove :");
                     scanf("%d", &input_NO_property);
 
 
@@ -4319,13 +4319,13 @@ int remove_rent_property() {
                         file_updater("rent_land_properties.txt", 1 + (input_NO_property - 1) * 9, "STATUS: DEACTIVE");
                         system("cls");
                         decorator2();
-                        printf("Property removed successfully\nPress any key to go back ...\n");
+                        printf("Property Removed Successfully\nPress any key to go back ...\n");
                         decorator2();
                         getch();
                         continue;
                     }
                     else {
-                        printf("Wrong input !\nPress any key to go back ...");
+                        printf("WRONG INPUT!\nPress any key to go back ...");
                         getch();
                         continue;
                     }
@@ -4343,7 +4343,7 @@ int remove_rent_property() {
                     }
 
                     else {
-                        printf("*** Wrong Input ***\nPress any key to continue ...");
+                        printf("*** WRONG INPUT ***\nPress any key to continue ...");
                         getch();
                         system("cls");
                     }
@@ -4361,11 +4361,11 @@ int remove_item() {
         decorator1();
         printf("\t\t\t\t   REMOVE AN ITEM\n");
         decorator1();
-        printf("1) remove available properties for sell\n");
-        printf("2) remove available properties for rent\n");
+        printf("1) Remove An Available Property For Sell\n");
+        printf("2) Remove An Available Property For Rent\n");
         printf("\n\n\n8) Back\n");
         decorator1();
-        printf("Your choice :");
+        printf("Your Choice :");
         scanf("%s", choice);
         fflush(stdin);
         strlwr(choice);
@@ -4387,7 +4387,7 @@ int remove_item() {
                 }
 
                 else {
-                    printf("*** Wrong Input ***\nPress any key to continue ...");
+                    printf("*** WRONG INPUT ***\nPress any key to continue ...");
                     getch();
                     system("cls");
                 }
