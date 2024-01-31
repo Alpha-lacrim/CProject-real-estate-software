@@ -12,16 +12,6 @@
 
 char *log_username_ptr, *log_pw_ptr, *log_role_ptr;
 
-int max_min_finder(int max, int min) {
-    int temp;
-
-    if (min > max) {
-        temp = max;
-        max = min;
-        min = temp;
-    }
-}
-
 void decorator1() {
     int i;
     for (i = 0; i <= 40; i++) { // Decorator
@@ -1086,9 +1076,9 @@ int residential_property_fwriter(int rent_or_sell) {
             decorator1();
             printf("RESIDENTIAL PROPERTY\n");
             decorator1();
-            printf("Please enter the property price\n\n\n\n\n");
+            printf("Please enter the property rental_price\n\n\n\n\n");
             decorator1();
-            printf("price :");
+            printf("rental_price :");
             scanf("%s", price);
             fflush(stdin);
 
@@ -1182,9 +1172,9 @@ int residential_property_fwriter(int rent_or_sell) {
                 decorator1();
                 printf("RESIDENTIAL PROPERTY\n");
                 decorator1();
-                printf("Please enter the property rental price\n\n\n\n\n");
+                printf("Please enter the property rental rental_price\n\n\n\n\n");
                 decorator1();
-                printf("rental price :");
+                printf("rental rental_price :");
                 scanf("%s", rental_price);
                 fflush(stdin);
 
@@ -1499,9 +1489,9 @@ int office_property_fwriter(int rent_or_sell) {
             decorator1();
             printf("OFFICE PROPERTY\n");
             decorator1();
-            printf("Please enter the property price\n\n\n\n\n");
+            printf("Please enter the property rental_price\n\n\n\n\n");
             decorator1();
-            printf("price :");
+            printf("rental_price :");
             scanf("%s", price);
             fflush(stdin);
 
@@ -1596,9 +1586,9 @@ int office_property_fwriter(int rent_or_sell) {
                 decorator1();
                 printf("OFFICE PROPERTY\n");
                 decorator1();
-                printf("Please enter the property rental price\n\n\n\n\n");
+                printf("Please enter the property rental rental_price\n\n\n\n\n");
                 decorator1();
-                printf("rental price :");
+                printf("rental rental_price :");
                 scanf("%s", rental_price);
                 fflush(stdin);
 
@@ -1814,9 +1804,9 @@ int land_property_fwriter(int rent_or_sell) {
             decorator1();
             printf("LAND PROPERTY\n");
             decorator1();
-            printf("Please enter the property price\n\n\n\n\n");
+            printf("Please enter the property rental_price\n\n\n\n\n");
             decorator1();
-            printf("price :");
+            printf("rental_price :");
             scanf("%s", price);
             fflush(stdin);
 
@@ -1902,9 +1892,9 @@ int land_property_fwriter(int rent_or_sell) {
                 decorator1();
                 printf("LAND PROPERTY\n");
                 decorator1();
-                printf("Please enter the property rental price\n\n\n\n\n");
+                printf("Please enter the property rental rental_price\n\n\n\n\n");
                 decorator1();
-                printf("rental price :");
+                printf("rental rental_price :");
                 scanf("%s", rental_price);
                 fflush(stdin);
 
@@ -1978,7 +1968,7 @@ int searching_filter(int building_or_land) {
         printf("2) Number of properties\n");
         printf("3) Search by municipal area\n");
         printf("4) Search by base meterage\n");
-        printf("5) Search by price\n");
+        printf("5) Search by rental_price\n");
 
         if (building_or_land == 1) {
             printf("6) Search by building lifespan\n");
@@ -2194,12 +2184,12 @@ int buy() {
 
                 case 5:
                     decorator1();
-                    printf("Enter the price range\n\n\n\n\n");
+                    printf("Enter the rental_price range\n\n\n\n\n");
                     decorator1();
-                    printf("Entered price :");
+                    printf("Entered rental_price :");
                     scanf("%d", &input_price_max);
 
-                    printf("\nEntered price :");
+                    printf("\nEntered rental_price :");
                     scanf("%d", &input_price_min);
 
                     // max and min returner
@@ -2451,12 +2441,12 @@ int buy() {
 
                     case 5:
                         decorator1();
-                        printf("Enter the price range\n\n\n\n\n");
+                        printf("Enter the rental_price range\n\n\n\n\n");
                         decorator1();
-                        printf("Entered price :");
+                        printf("Entered rental_price :");
                         scanf("%d", &input_price_max);
 
-                        printf("\nEntered price :");
+                        printf("\nEntered rental_price :");
                         scanf("%d", &input_price_min);
 
                         // max and min returner
@@ -2631,14 +2621,14 @@ int buy() {
                 if (searching_choice == 2) {
                     system("cls");
                     decorator1();
-                    printf("There are %d active residential properties in the system ...\n", NO_properties);
+                    printf("There are %d active office properties in the system ...\n", NO_properties);
                     decorator1();
                     printf("\n\n\n\n\nPress any key to continue ...");
                 } else {
                     if (searching_choice == 1) {
                         system("cls");
                         decorator1();
-                        printf("Total value of active residential properties in the system is : %d\n", total_value);
+                        printf("Total value of active office properties in the system is : %d\n", total_value);
                         decorator1();
                         printf("\n\n\n\n\nPress any key to continue ...");
                     }
@@ -2684,12 +2674,12 @@ int buy() {
 
                         case 5:
                             decorator1();
-                            printf("Enter the price range\n\n\n\n\n");
+                            printf("Enter the rental_price range\n\n\n\n\n");
                             decorator1();
-                            printf("Entered price :");
+                            printf("Entered rental_price :");
                             scanf("%d", &input_price_max);
 
-                            printf("\nEntered price :");
+                            printf("\nEntered rental_price :");
                             scanf("%d", &input_price_min);
 
                             // max and min returner
@@ -2804,14 +2794,14 @@ int buy() {
                     if (searching_choice == 2) {
                         system("cls");
                         decorator1();
-                        printf("There are %d active residential properties in the system ...\n", NO_properties);
+                        printf("There are %d active land properties in the system ...\n", NO_properties);
                         decorator1();
                         printf("\n\n\n\n\nPress any key to continue ...");
                     } else {
                         if (searching_choice == 1) {
                             system("cls");
                             decorator1();
-                            printf("Total value of active residential properties in the system is : %d\n", total_value);
+                            printf("Total value of active land properties in the system is : %d\n", total_value);
                             decorator1();
                             printf("\n\n\n\n\nPress any key to continue ...");
                         }
@@ -2839,10 +2829,12 @@ int buy() {
 }
 
 
-int renting() { // this function is for showing available rental properties reports
-    char choice[10], decorator_skip[30], input_municipal_area[10], input_building_lifespan[10], input_base_meterage[10];
-    char input_NO_rooms[10];
-    int input_rental_price, total_value = 0, input_mortgage;
+int renting() {
+    char choice[10], decorator_skip[30];
+    char input_NO_rooms[10], input_municipal_area[10];
+    int input_building_lifespan_max, input_base_meterage_max, input_mortgage_max, input_rental_price_max;
+    int input_building_lifespan_min, input_base_meterage_min, input_mortgage_min, input_rental_price_min;
+    int total_value = 0, results = 0, temp_int = 0;
     int searching_choice, loop_checker = 0, NO_properties = 0;
     FILE *fp;
 
@@ -2876,32 +2868,84 @@ int renting() { // this function is for showing available rental properties repo
                     system("cls");
                     break;
 
+                case 6:
+                    decorator1();
+                    printf("Enter the building lifespan range\n\n\n\n\n");
+                    decorator1();
+
+                    printf("Entered building lifespan :");
+                    scanf("%d", &input_building_lifespan_max);
+
+                    printf("\nEntered building lifespan :");
+                    scanf("%d", &input_building_lifespan_min);
+
+                    // max and min returner
+                    if (input_building_lifespan_min > input_building_lifespan_max) {
+                        temp_int = input_building_lifespan_max;
+                        input_building_lifespan_max = input_building_lifespan_min;
+                        input_building_lifespan_min = temp_int;
+                    }
+
+                    fflush(stdin);
+                    system("cls");
+                    getch();
+                    break;
+
                 case 4:
                     decorator1();
-                    printf("Enter the building lifespan\n\n\n\n\n");
+                    printf("Enter the base meterage range\n\n\n\n\n");
                     decorator1();
-                    printf("Entered building lifespan :");
-                    scanf("%s", input_building_lifespan);
+                    printf("Entered base meterage :");
+                    scanf("%d", &input_base_meterage_max);
+
+                    printf("\nEntered base meterage :");
+                    scanf("%d", &input_base_meterage_min);
+
+                    // max and min returner
+                    if (input_base_meterage_min > input_base_meterage_max) {
+                        temp_int = input_base_meterage_max;
+                        input_base_meterage_max = input_base_meterage_min;
+                        input_base_meterage_min = temp_int;
+                    }
+
                     fflush(stdin);
                     system("cls");
                     break;
 
                 case 5:
                     decorator1();
-                    printf("Enter the base meterage\n\n\n\n\n");
-                    decorator1();
-                    printf("Entered base meterage :");
-                    scanf("%s", input_base_meterage);
-                    fflush(stdin);
-                    system("cls");
-                    break;
-
-                case 6:
-                    decorator1();
-                    printf("Enter the mortgage\n\n\n\n\n");
+                    printf("Enter the mortgage range\n\n\n\n\n");
                     decorator1();
                     printf("Entered mortgage :");
-                    scanf("%d", &input_mortgage);
+                    scanf("%d", &input_mortgage_max);
+
+                    printf("\nEntered mortgage :");
+                    scanf("%d", &input_mortgage_min);
+
+                    system("cls");
+
+                    decorator1();
+                    printf("Enter the rental rental_price range\n\n\n\n\n");
+                    decorator1();
+                    printf("Entered rental rental_price :");
+                    scanf("%d", &input_rental_price_max);
+
+                    printf("\nEntered rental rental_price :");
+                    scanf("%d", &input_rental_price_min);
+
+                    // max and min returner
+                    if (input_mortgage_min > input_mortgage_max) {
+                        temp_int = input_mortgage_max;
+                        input_mortgage_max = input_mortgage_min;
+                        input_mortgage_min = temp_int;
+                    }
+
+                    if (input_rental_price_min > input_rental_price_max) {
+                        temp_int = input_rental_price_max;
+                        input_rental_price_max = input_rental_price_min;
+                        input_rental_price_min = temp_int;
+                    }
+
                     system("cls");
                     break;
 
@@ -2918,39 +2962,41 @@ int renting() { // this function is for showing available rental properties repo
                 case 8:
                     system("cls");
                     return 0;
+                    break;
             }
 
             struct rent_residential_property {
                 char status[20];
                 char address[100];
-                char building_lifespan[10];
-                char building_meterage[10];
+                int building_lifespan;
+                int building_meterage;
                 char building_municipal_area[5];
                 char floor[10];
-                char base_meterage[10];
+                int base_meterage;
                 char owner_phone_number[40];
                 char rooms[10];
                 char type[20];
-                int mortgage;
                 int rental_price;
+                int mortgage;
                 struct rent_residential_property *link;
             };
             struct rent_residential_property *head = NULL, *tail = NULL, *temp = NULL;
 
             fp = fopen("rent_residential_properties.txt", "r");
 
+            results = 0;
+            NO_properties = 0;
+
             while (feof(fp) == 0) {
-
                 temp = malloc(sizeof(struct rent_residential_property));
-
                 fscanf(fp, "%*s %s\n", temp->status);
                 fscanf(fp, "%*s %s\n", temp->address);
                 space_returner(temp->address);
-                fscanf(fp, "%*s %s\n", temp->building_lifespan);
-                fscanf(fp, "%*s %s\n", temp->building_meterage);
+                fscanf(fp, "%*s %d\n", &temp->building_lifespan);
+                fscanf(fp, "%*s %d\n", &temp->building_meterage);
                 fscanf(fp, "%*s %s\n", temp->building_municipal_area);
                 fscanf(fp, "%*s %s\n", temp->floor);
-                fscanf(fp, "%*s %s\n", temp->base_meterage);
+                fscanf(fp, "%*s %d\n", &temp->base_meterage);
                 fscanf(fp, "%*s %s\n", temp->owner_phone_number);
                 fscanf(fp, "%*s %s\n", temp->rooms);
                 fscanf(fp, "%*s %s\n", temp->type);
@@ -2965,12 +3011,13 @@ int renting() { // this function is for showing available rental properties repo
 
                 if (searching_choice == 3 && strcmp(temp->building_municipal_area, input_municipal_area) == 0 &&
                     strcmp(temp->status, "ACTIVE") == 0) {
+                    results += 1;
                     printf("ADDRESS : %s\n", temp->address);
-                    printf("BUILDING LIFESPAN : %s\n", temp->building_lifespan);
-                    printf("BUILDING METERAGE : %s\n", temp->building_meterage);
+                    printf("BUILDING LIFESPAN : %d\n", temp->building_lifespan);
+                    printf("BUILDING METERAGE : %d\n", temp->building_meterage);
                     printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
                     printf("FLOOR : %s\n", temp->floor);
-                    printf("BASE METERAGE : %s\n", temp->base_meterage);
+                    printf("BASE METERAGE : %d\n", temp->base_meterage);
                     printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                     printf("ROOMS : %s\n", temp->rooms);
                     printf("TYPE : %s\n", temp->type);
@@ -2978,14 +3025,16 @@ int renting() { // this function is for showing available rental properties repo
                     printf("RENTAL PRICE : %d\n", temp->rental_price);
                     decorator1();
                 } else {
-                    if (searching_choice == 4 && strcmp(temp->building_lifespan, input_building_lifespan) == 0 &&
+                    if (searching_choice == 6 &&
+                        (temp->building_lifespan >= input_building_lifespan_min && temp->building_lifespan <= input_building_lifespan_max) &&
                         strcmp(temp->status, "ACTIVE") == 0) {
+                        results += 1;
                         printf("ADDRESS : %s\n", temp->address);
-                        printf("BUILDING LIFESPAN : %s\n", temp->building_lifespan);
-                        printf("BUILDING METERAGE : %s\n", temp->building_meterage);
+                        printf("BUILDING LIFESPAN : %d\n", temp->building_lifespan);
+                        printf("BUILDING METERAGE : %d\n", temp->building_meterage);
                         printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
                         printf("FLOOR : %s\n", temp->floor);
-                        printf("BASE METERAGE : %s\n", temp->base_meterage);
+                        printf("BASE METERAGE : %d\n", temp->base_meterage);
                         printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                         printf("ROOMS : %s\n", temp->rooms);
                         printf("TYPE : %s\n", temp->type);
@@ -2993,14 +3042,16 @@ int renting() { // this function is for showing available rental properties repo
                         printf("RENTAL PRICE : %d\n", temp->rental_price);
                         decorator1();
                     } else {
-                        if (searching_choice == 5 && strcmp(temp->base_meterage, input_base_meterage) == 0 &&
+                        if (searching_choice == 4 &&
+                            (temp->base_meterage >= input_base_meterage_min && temp->base_meterage <= input_base_meterage_max) &&
                             strcmp(temp->status, "ACTIVE") == 0) {
+                            results += 1;
                             printf("ADDRESS : %s\n", temp->address);
-                            printf("BUILDING LIFESPAN : %s\n", temp->building_lifespan);
-                            printf("BUILDING METERAGE : %s\n", temp->building_meterage);
+                            printf("BUILDING LIFESPAN : %d\n", temp->building_lifespan);
+                            printf("BUILDING METERAGE : %d\n", temp->building_meterage);
                             printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
                             printf("FLOOR : %s\n", temp->floor);
-                            printf("BASE METERAGE : %s\n", temp->base_meterage);
+                            printf("BASE METERAGE : %d\n", temp->base_meterage);
                             printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                             printf("ROOMS : %s\n", temp->rooms);
                             printf("TYPE : %s\n", temp->type);
@@ -3008,14 +3059,17 @@ int renting() { // this function is for showing available rental properties repo
                             printf("RENTAL PRICE : %d\n", temp->rental_price);
                             decorator1();
                         } else {
-                            if (searching_choice == 6 && temp->mortgage == input_mortgage &&
+                            if (searching_choice == 5 &&
+                                (temp->mortgage >= input_mortgage_min && temp->mortgage <= input_mortgage_max) &&
+                                (temp->rental_price >= input_rental_price_min && temp->rental_price <= input_rental_price_max) &&
                                 strcmp(temp->status, "ACTIVE") == 0) {
+                                results += 1;
                                 printf("ADDRESS : %s\n", temp->address);
-                                printf("BUILDING LIFESPAN : %s\n", temp->building_lifespan);
-                                printf("BUILDING METERAGE : %s\n", temp->building_meterage);
+                                printf("BUILDING LIFESPAN : %d\n", temp->building_lifespan);
+                                printf("BUILDING METERAGE : %d\n", temp->building_meterage);
                                 printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
                                 printf("FLOOR : %s\n", temp->floor);
-                                printf("BASE METERAGE : %s\n", temp->base_meterage);
+                                printf("BASE METERAGE : %d\n", temp->base_meterage);
                                 printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                                 printf("ROOMS : %s\n", temp->rooms);
                                 printf("TYPE : %s\n", temp->type);
@@ -3025,17 +3079,18 @@ int renting() { // this function is for showing available rental properties repo
                             } else {
                                 if (searching_choice == 7 && strcmp(temp->rooms, input_NO_rooms) == 0 &&
                                     strcmp(temp->status, "ACTIVE") == 0) {
+                                    results += 1;
                                     printf("ADDRESS : %s\n", temp->address);
-                                    printf("BUILDING LIFESPAN : %s\n", temp->building_lifespan);
-                                    printf("BUILDING METERAGE : %s\n", temp->building_meterage);
+                                    printf("BUILDING LIFESPAN : %d\n", temp->building_lifespan);
+                                    printf("BUILDING METERAGE : %d\n", temp->building_meterage);
                                     printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
                                     printf("FLOOR : %s\n", temp->floor);
-                                    printf("BASE METERAGE : %s\n", temp->base_meterage);
+                                    printf("BASE METERAGE : %d\n", temp->base_meterage);
                                     printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                                     printf("ROOMS : %s\n", temp->rooms);
                                     printf("TYPE : %s\n", temp->type);
                                     printf("MORTGAGE : %d\n", temp->mortgage);
-                                    printf("RENTAL PRICE : %d\n", temp->rental_price);
+                                    printf("PRICE : %d\n", temp->rental_price);
                                     decorator1();
                                 }
 
@@ -3055,8 +3110,8 @@ int renting() { // this function is for showing available rental properties repo
                 }
             }
 
-            if (NO_properties == 0) {
-                printf("\nNo results found\nPress any key to go back ...");
+            if (results == 0) {
+                printf("\nNo results found\nPress any key to return ...");
                 getch();
                 system("cls");
                 continue;
@@ -3065,14 +3120,14 @@ int renting() { // this function is for showing available rental properties repo
             if (searching_choice == 2) {
                 system("cls");
                 decorator1();
-                printf("There are %d active residential properties in the system ...\n", NO_properties);
+                printf("There are %d active rental residential properties in the system ...\n", NO_properties);
                 decorator1();
                 printf("\n\n\n\n\nPress any key to continue ...");
             } else {
                 if (searching_choice == 1) {
                     system("cls");
                     decorator1();
-                    printf("Total value of active residential properties in the system is : %d\n", total_value);
+                    printf("Total value of active rental residential properties in the system is : %d (based on mortgages)\n", total_value);
                     decorator1();
                     printf("\n\n\n\n\nPress any key to continue ...");
                 }
@@ -3096,32 +3151,82 @@ int renting() { // this function is for showing available rental properties repo
                         system("cls");
                         break;
 
+                    case 6:
+                        decorator1();
+                        printf("Enter the building lifespan range\n\n\n\n\n");
+                        decorator1();
+
+                        printf("Entered building lifespan :");
+                        scanf("%d", &input_building_lifespan_max);
+
+                        printf("\nEntered building lifespan :");
+                        scanf("%d", &input_building_lifespan_min);
+
+                        // max and min returner
+                        if (input_building_lifespan_min > input_building_lifespan_max) {
+                            temp_int = input_building_lifespan_max;
+                            input_building_lifespan_max = input_building_lifespan_min;
+                            input_building_lifespan_min = temp_int;
+                        }
+
+                        fflush(stdin);
+                        system("cls");
+                        break;
+
                     case 4:
                         decorator1();
-                        printf("Enter the building lifespan\n\n\n\n\n");
+                        printf("Enter the base meterage range\n\n\n\n\n");
                         decorator1();
-                        printf("Entered building lifespan :");
-                        scanf("%s", input_building_lifespan);
+                        printf("Entered base meterage :");
+                        scanf("%d", &input_base_meterage_max);
+
+                        printf("\nEntered base meterage :");
+                        scanf("%d", &input_base_meterage_min);
+
+                        // max and min returner
+                        if (input_base_meterage_min > input_base_meterage_max) {
+                            temp_int = input_base_meterage_max;
+                            input_base_meterage_max = input_base_meterage_min;
+                            input_base_meterage_min = temp_int;
+                        }
+
                         fflush(stdin);
                         system("cls");
                         break;
 
                     case 5:
                         decorator1();
-                        printf("Enter the base meterage\n\n\n\n\n");
+                        printf("Enter the rental rental_price range\n\n\n\n\n");
                         decorator1();
-                        printf("Entered base meterage :");
-                        scanf("%s", input_base_meterage);
-                        fflush(stdin);
-                        system("cls");
-                        break;
+                        printf("Entered rental rental_price :");
+                        scanf("%d", &input_rental_price_max);
 
-                    case 6:
+                        printf("\nEntered rental_price :");
+                        scanf("%d", &input_rental_price_min);
+
+                        system("cls");
                         decorator1();
-                        printf("Enter the price\n\n\n\n\n");
+                        printf("Enter the mortgage range\n\n\n\n\n");
                         decorator1();
-                        printf("Entered price :");
-                        scanf("%d", &input_mortgage);
+                        printf("Entered mortgage :");
+                        scanf("%d", &input_mortgage_max);
+
+                        printf("\nEntered mortgage :");
+                        scanf("%d", &input_mortgage_min);
+
+                        // max and min returner
+                        if (input_mortgage_min > input_mortgage_max) {
+                            temp_int = input_mortgage_max;
+                            input_mortgage_max = input_mortgage_min;
+                            input_mortgage_min = temp_int;
+                        }
+
+                        if (input_rental_price_min > input_rental_price_max) {
+                            temp_int = input_rental_price_max;
+                            input_rental_price_max = input_rental_price_min;
+                            input_rental_price_min = temp_int;
+                        }
+
                         system("cls");
                         break;
 
@@ -3143,11 +3248,11 @@ int renting() { // this function is for showing available rental properties repo
                 struct rent_office_property {
                     char status[20];
                     char address[100];
-                    char building_lifespan[10];
-                    char building_meterage[10];
+                    int building_lifespan;
+                    int building_meterage;
                     char building_municipal_area[5];
                     char floor[10];
-                    char base_meterage[10];
+                    int base_meterage;
                     char owner_phone_number[40];
                     char rooms[10];
                     char type[20];
@@ -3157,7 +3262,10 @@ int renting() { // this function is for showing available rental properties repo
                 };
                 struct rent_office_property *head = NULL, *tail = NULL, *temp = NULL;
 
-                fp = fopen("sell_office_properties.txt", "r");
+                fp = fopen("rent_office_properties.txt", "r");
+
+                NO_properties = 0;
+                results = 0;
 
                 while (feof(fp) == 0) {
                     temp = malloc(sizeof(struct rent_office_property));
@@ -3165,11 +3273,11 @@ int renting() { // this function is for showing available rental properties repo
                     fscanf(fp, "%*s %s\n", temp->status);
                     fscanf(fp, "%*s %s\n", temp->address);
                     space_returner(temp->address);
-                    fscanf(fp, "%*s %s\n", temp->building_lifespan);
-                    fscanf(fp, "%*s %s\n", temp->building_meterage);
+                    fscanf(fp, "%*s %d\n", &temp->building_lifespan);
+                    fscanf(fp, "%*s %d\n", &temp->building_meterage);
                     fscanf(fp, "%*s %s\n", temp->building_municipal_area);
                     fscanf(fp, "%*s %s\n", temp->floor);
-                    fscanf(fp, "%*s %s\n", temp->base_meterage);
+                    fscanf(fp, "%*s %d\n", &temp->base_meterage);
                     fscanf(fp, "%*s %s\n", temp->owner_phone_number);
                     fscanf(fp, "%*s %s\n", temp->rooms);
                     fscanf(fp, "%*s %s\n", temp->type);
@@ -3184,27 +3292,30 @@ int renting() { // this function is for showing available rental properties repo
 
                     if (searching_choice == 3 && strcmp(temp->building_municipal_area, input_municipal_area) == 0 &&
                         strcmp(temp->status, "ACTIVE") == 0) {
+                        results += 1;
                         printf("ADDRESS : %s\n", temp->address);
-                        printf("BUILDING LIFESPAN : %s\n", temp->building_lifespan);
-                        printf("BUILDING METERAGE : %s\n", temp->building_meterage);
+                        printf("BUILDING LIFESPAN : %d\n", temp->building_lifespan);
+                        printf("BUILDING METERAGE : %d\n", temp->building_meterage);
                         printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
                         printf("FLOOR : %s\n", temp->floor);
-                        printf("BASE METERAGE : %s\n", temp->base_meterage);
+                        printf("BASE METERAGE : %d\n", temp->base_meterage);
                         printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                         printf("ROOMS : %s\n", temp->rooms);
                         printf("TYPE : %s\n", temp->type);
-                        printf("MORTGAGE : %d\n", temp->mortgage);
+                        printf("MORTGAGE : %s\n", temp->type);
                         printf("RENTAL PRICE : %d\n", temp->rental_price);
                         decorator1();
                     } else {
-                        if (searching_choice == 4 && strcmp(temp->building_lifespan, input_building_lifespan) == 0 &&
+                        if (searching_choice == 4 &&
+                            (temp->building_lifespan >= input_building_lifespan_min && temp->building_lifespan <= input_building_lifespan_max) &&
                             strcmp(temp->status, "ACTIVE") == 0) {
+                            results += 1;
                             printf("ADDRESS : %s\n", temp->address);
-                            printf("BUILDING LIFESPAN : %s\n", temp->building_lifespan);
-                            printf("BUILDING METERAGE : %s\n", temp->building_meterage);
+                            printf("BUILDING LIFESPAN : %d\n", temp->building_lifespan);
+                            printf("BUILDING METERAGE : %d\n", temp->building_meterage);
                             printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
                             printf("FLOOR : %s\n", temp->floor);
-                            printf("BASE METERAGE : %s\n", temp->base_meterage);
+                            printf("BASE METERAGE : %d\n", temp->base_meterage);
                             printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                             printf("ROOMS : %s\n", temp->rooms);
                             printf("TYPE : %s\n", temp->type);
@@ -3212,14 +3323,16 @@ int renting() { // this function is for showing available rental properties repo
                             printf("RENTAL PRICE : %d\n", temp->rental_price);
                             decorator1();
                         } else {
-                            if (searching_choice == 5 && strcmp(temp->base_meterage, input_base_meterage) == 0 &&
+                            if (searching_choice == 5 &&
+                                (temp->base_meterage >= input_base_meterage_min && temp->base_meterage <= input_base_meterage_max) &&
                                 strcmp(temp->status, "ACTIVE") == 0) {
+                                results += 1;
                                 printf("ADDRESS : %s\n", temp->address);
-                                printf("BUILDING LIFESPAN : %s\n", temp->building_lifespan);
-                                printf("BUILDING METERAGE : %s\n", temp->building_meterage);
+                                printf("BUILDING LIFESPAN : %d\n", temp->building_lifespan);
+                                printf("BUILDING METERAGE : %d\n", temp->building_meterage);
                                 printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
                                 printf("FLOOR : %s\n", temp->floor);
-                                printf("BASE METERAGE : %s\n", temp->base_meterage);
+                                printf("BASE METERAGE : %d\n", temp->base_meterage);
                                 printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                                 printf("ROOMS : %s\n", temp->rooms);
                                 printf("TYPE : %s\n", temp->type);
@@ -3227,14 +3340,17 @@ int renting() { // this function is for showing available rental properties repo
                                 printf("RENTAL PRICE : %d\n", temp->rental_price);
                                 decorator1();
                             } else {
-                                if (searching_choice == 6 && temp->mortgage == input_mortgage &&
+                                if (searching_choice == 6 &&
+                                    (temp->rental_price >= input_rental_price_min && temp->rental_price <= input_rental_price_max) &&
+                                    (temp->mortgage >= input_mortgage_min && temp->mortgage <= input_mortgage_max) &&
                                     strcmp(temp->status, "ACTIVE") == 0) {
+                                    results += 1;
                                     printf("ADDRESS : %s\n", temp->address);
-                                    printf("BUILDING LIFESPAN : %s\n", temp->building_lifespan);
-                                    printf("BUILDING METERAGE : %s\n", temp->building_meterage);
+                                    printf("BUILDING LIFESPAN : %d\n", temp->building_lifespan);
+                                    printf("BUILDING METERAGE : %d\n", temp->building_meterage);
                                     printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
                                     printf("FLOOR : %s\n", temp->floor);
-                                    printf("BASE METERAGE : %s\n", temp->base_meterage);
+                                    printf("BASE METERAGE : %d\n", temp->base_meterage);
                                     printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                                     printf("ROOMS : %s\n", temp->rooms);
                                     printf("TYPE : %s\n", temp->type);
@@ -3244,12 +3360,13 @@ int renting() { // this function is for showing available rental properties repo
                                 } else {
                                     if (searching_choice == 7 && strcmp(temp->rooms, input_NO_rooms) == 0 &&
                                         strcmp(temp->status, "ACTIVE") == 0) {
+                                        results += 1;
                                         printf("ADDRESS : %s\n", temp->address);
-                                        printf("BUILDING LIFESPAN : %s\n", temp->building_lifespan);
-                                        printf("BUILDING METERAGE : %s\n", temp->building_meterage);
+                                        printf("BUILDING LIFESPAN : %d\n", temp->building_lifespan);
+                                        printf("BUILDING METERAGE : %d\n", temp->building_meterage);
                                         printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
                                         printf("FLOOR : %s\n", temp->floor);
-                                        printf("BASE METERAGE : %s\n", temp->base_meterage);
+                                        printf("BASE METERAGE : %d\n", temp->base_meterage);
                                         printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                                         printf("ROOMS : %s\n", temp->rooms);
                                         printf("TYPE : %s\n", temp->type);
@@ -3257,7 +3374,6 @@ int renting() { // this function is for showing available rental properties repo
                                         printf("RENTAL PRICE : %d\n", temp->rental_price);
                                         decorator1();
                                     }
-
                                 }
                             }
                         }
@@ -3274,8 +3390,8 @@ int renting() { // this function is for showing available rental properties repo
                     }
                 }
 
-                if (NO_properties == 0) {
-                    printf("\nNo results found\nPress any key to go back ...");
+                if (results == 0) {
+                    printf("\nNo results found\nPress any key to return ...");
                     getch();
                     system("cls");
                     continue;
@@ -3284,14 +3400,14 @@ int renting() { // this function is for showing available rental properties repo
                 if (searching_choice == 2) {
                     system("cls");
                     decorator1();
-                    printf("There are %d active residential properties in the system ...\n", NO_properties);
+                    printf("There are %d active rental office properties in the system ...\n", NO_properties);
                     decorator1();
                     printf("\n\n\n\n\nPress any key to continue ...");
                 } else {
                     if (searching_choice == 1) {
                         system("cls");
                         decorator1();
-                        printf("Total value of active residential properties in the system is : %d\n", total_value);
+                        printf("Total value of active rental office properties in the system is : %d (based on mortgages)\n", total_value);
                         decorator1();
                         printf("\n\n\n\n\nPress any key to continue ...");
                     }
@@ -3317,30 +3433,57 @@ int renting() { // this function is for showing available rental properties repo
 
                         case 4:
                             decorator1();
-                            printf("Enter the building lifespan\n\n\n\n\n");
+                            printf("Enter the land meterage range\n\n\n\n\n");
                             decorator1();
-                            printf("Entered building lifespan :");
-                            scanf("%s", input_building_lifespan);
-                            fflush(stdin);
+                            printf("Entered land meterage :");
+                            scanf("%d", &input_base_meterage_max);
+
+                            printf("\nEntered land meterage :");
+                            scanf("%d", &input_base_meterage_min);
+
+                            // max and min returner
+                            if (input_base_meterage_min > input_base_meterage_max) {
+                                temp_int = input_base_meterage_max;
+                                input_base_meterage_max = input_base_meterage_min;
+                                input_base_meterage_min = temp_int;
+                            }
+
                             system("cls");
                             break;
 
                         case 5:
                             decorator1();
-                            printf("Enter the base meterage\n\n\n\n\n");
+                            printf("Enter the rental price range\n\n\n\n\n");
                             decorator1();
-                            printf("Entered base meterage :");
-                            scanf("%s", input_base_meterage);
-                            fflush(stdin);
-                            system("cls");
-                            break;
+                            printf("Entered rental price :");
+                            scanf("%d", &input_rental_price_max);
 
-                        case 6:
+                            printf("\nEntered rental_price :");
+                            scanf("%d", &input_rental_price_min);
+
+                            system("cls");
+
                             decorator1();
-                            printf("Enter the mortgage\n\n\n\n\n");
+                            printf("Enter the mortgage range\n\n\n\n\n");
                             decorator1();
                             printf("Entered mortgage :");
-                            scanf("%d", &input_mortgage);
+                            scanf("%d", &input_mortgage_max);
+
+                            printf("\nEntered mortgage :");
+                            scanf("%d", &input_mortgage_min);
+
+                            // max and min returner
+                            if (input_mortgage_min > input_mortgage_max) {
+                                temp_int = input_mortgage_max;
+                                input_mortgage_max = input_mortgage_min;
+                                input_mortgage_min = temp_int;
+                            }
+                            if (input_rental_price_min > input_rental_price_max) {
+                                temp_int = input_rental_price_max;
+                                input_rental_price_max = input_rental_price_min;
+                                input_rental_price_min = temp_int;
+                            }
+
                             system("cls");
                             break;
 
@@ -3353,7 +3496,7 @@ int renting() { // this function is for showing available rental properties repo
                         char status[20];
                         char address[100];
                         char building_municipal_area[5];
-                        char land_meterage[10];
+                        int land_meterage;
                         char owner_phone_number[40];
                         char type[20];
                         int mortgage;
@@ -3364,6 +3507,9 @@ int renting() { // this function is for showing available rental properties repo
 
                     fp = fopen("rent_land_properties.txt", "r");
 
+                    NO_properties = 0;
+                    results = 0;
+
                     while (feof(fp) == 0) {
 
                         temp = malloc(sizeof(struct rent_land_property));
@@ -3372,12 +3518,12 @@ int renting() { // this function is for showing available rental properties repo
                         fscanf(fp, "%*s %s\n", temp->address);
                         space_returner(temp->address);
                         fscanf(fp, "%*s %s\n", temp->building_municipal_area);
-                        fscanf(fp, "%*s %s\n", temp->land_meterage);
+                        fscanf(fp, "%*s %d\n", &temp->land_meterage);
                         fscanf(fp, "%*s %s\n", temp->owner_phone_number);
-                        fscanf(fp, "%*s %s\n", temp->type);
                         fscanf(fp, "%*s %d\n", &temp->rental_price);
                         fscanf(fp, "%*s %d\n", &temp->mortgage);
                         fscanf(fp, "%s\n", decorator_skip);
+
 
                         if (strcmp(temp->status, "ACTIVE") == 0) {
                             NO_properties += 1;
@@ -3386,38 +3532,43 @@ int renting() { // this function is for showing available rental properties repo
 
                         if (searching_choice == 3 && strcmp(temp->building_municipal_area, input_municipal_area) == 0 &&
                             strcmp(temp->status, "ACTIVE") == 0) {
+                            results += 1;
                             printf("ADDRESS : %s\n", temp->address);
                             printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
-                            printf("LAND METERAGE : %s\n", temp->land_meterage);
+                            printf("LAND METERAGE : %d\n", temp->land_meterage);
                             printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                             printf("TYPE : %s\n", temp->type);
-                            printf("MORTGAGE : %d\n", temp->mortgage);
                             printf("RENTAL PRICE : %d\n", temp->rental_price);
+                            printf("MORTGAGE : %d\n", temp->mortgage);
                             decorator1();
                         } else {
-                            if (searching_choice == 5 && strcmp(temp->land_meterage, input_base_meterage) == 0 &&
+                            if (searching_choice == 4 &&
+                                (temp->land_meterage >= input_base_meterage_min && temp->land_meterage <= input_base_meterage_max) &&
                                 strcmp(temp->status, "ACTIVE") == 0) {
+                                results += 1;
                                 printf("ADDRESS : %s\n", temp->address);
                                 printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
-                                printf("BASE METERAGE : %s\n", temp->land_meterage);
+                                printf("BASE METERAGE : %d\n", temp->land_meterage);
                                 printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                                 printf("TYPE : %s\n", temp->type);
-                                printf("MORTGAGE : %d\n", temp->mortgage);
                                 printf("RENTAL PRICE : %d\n", temp->rental_price);
+                                printf("MORTGAGE : %d\n", temp->mortgage);
                                 decorator1();
                             } else {
-                                if (searching_choice == 6 && temp->mortgage == input_mortgage &&
+                                if (searching_choice == 5 &&
+                                    (temp->mortgage >= input_mortgage_min && temp->mortgage <= input_mortgage_max) &&
+                                    (temp->rental_price >= input_rental_price_min && temp->rental_price <= input_rental_price_max) &&
                                     strcmp(temp->status, "ACTIVE") == 0) {
+                                    results += 1;
                                     printf("ADDRESS : %s\n", temp->address);
                                     printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
-                                    printf("BASE METERAGE : %s\n", temp->land_meterage);
+                                    printf("BASE METERAGE : %d\n", temp->land_meterage);
                                     printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                                     printf("TYPE : %s\n", temp->type);
-                                    printf("MORTGAGE : %d\n", temp->mortgage);
                                     printf("RENTAL PRICE : %d\n", temp->rental_price);
+                                    printf("MORTGAGE : %d\n", temp->mortgage);
                                     decorator1();
                                 }
-
                             }
                         }
                     }
@@ -3433,8 +3584,8 @@ int renting() { // this function is for showing available rental properties repo
                     }
 
 
-                    if (NO_properties == 0) {
-                        printf("\nNo results found\nPress any key to go back ...");
+                    if (results == 0) {
+                        printf("\nNo results found\nPress any key to return ...");
                         getch();
                         system("cls");
                         continue;
@@ -3443,14 +3594,14 @@ int renting() { // this function is for showing available rental properties repo
                     if (searching_choice == 2) {
                         system("cls");
                         decorator1();
-                        printf("There are %d active residential properties in the system ...\n", NO_properties);
+                        printf("There are %d active rental land properties in the system ...\n", NO_properties);
                         decorator1();
                         printf("\n\n\n\n\nPress any key to continue ...");
                     } else {
                         if (searching_choice == 1) {
                             system("cls");
                             decorator1();
-                            printf("Total value of active residential properties in the system is : %d\n", total_value);
+                            printf("Total value of active rental land properties in the system is : %d (based on mortgages)\n", total_value);
                             decorator1();
                             printf("\n\n\n\n\nPress any key to continue ...");
                         }
