@@ -12,6 +12,15 @@
 
 char *log_username_ptr, *log_pw_ptr, *log_role_ptr;
 
+int max_min_finder(int max, int min) {
+    int temp;
+
+    if (min > max) {
+        temp = max;
+        max = min;
+        min = temp;
+    }
+}
 
 void decorator1() {
     int i;
@@ -1968,12 +1977,17 @@ int searching_filter(int building_or_land) {
         printf("1) Total value\n");
         printf("2) Number of properties\n");
         printf("3) Search by municipal area\n");
-        printf("4) Search by building lifespan\n");
-        printf("5) Search by base meterage\n");
-        printf("6) Search by price\n");
+        printf("4) Search by base meterage\n");
+        printf("5) Search by price\n");
+
+        if (building_or_land == 1) {
+            printf("6) Search by building lifespan\n");
+        }
+
         if (building_or_land == 1) {
             printf("7) Search by number of rooms\n");
         }
+
         printf("\n8) Back\n");
 
         decorator1();
@@ -2097,8 +2111,10 @@ int rent() { // this function is for give a property on rent
 
 int buy() {
     char choice[10], decorator_skip[30];
-    char input_NO_rooms[10], input_municipal_area[10], input_building_lifespan[10], input_base_meterage[10];
-    int input_price, total_value = 0;
+    char input_NO_rooms[10], input_municipal_area[10];
+    int input_building_lifespan_max, input_base_meterage_max, input_price_max;
+    int input_building_lifespan_min, input_base_meterage_min, input_price_min;
+    int total_value = 0, results = 0, temp_int = 0;
     int searching_choice, loop_checker = 0, NO_properties = 0;
     FILE *fp;
 
@@ -2132,32 +2148,67 @@ int buy() {
                     system("cls");
                     break;
 
+                case 6:
+                    decorator1();
+                    printf("Enter the building lifespan range\n\n\n\n\n");
+                    decorator1();
+
+                    printf("Entered building lifespan :");
+                    scanf("%d", &input_building_lifespan_max);
+
+                    printf("\nEntered building lifespan :");
+                    scanf("%d", &input_building_lifespan_min);
+
+                    // max and min returner
+                    if (input_building_lifespan_min > input_building_lifespan_max) {
+                        temp_int = input_building_lifespan_max;
+                        input_building_lifespan_max = input_building_lifespan_min;
+                        input_building_lifespan_min = temp_int;
+                    }
+
+                    fflush(stdin);
+                    system("cls");
+                    getch();
+                    break;
+
                 case 4:
                     decorator1();
-                    printf("Enter the building lifespan\n\n\n\n\n");
+                    printf("Enter the base meterage range\n\n\n\n\n");
                     decorator1();
-                    printf("Entered building lifespan :");
-                    scanf("%s", input_building_lifespan);
+                    printf("Entered base meterage :");
+                    scanf("%d", &input_base_meterage_max);
+
+                    printf("\nEntered base meterage :");
+                    scanf("%d", &input_base_meterage_min);
+
+                    // max and min returner
+                    if (input_base_meterage_min > input_base_meterage_max) {
+                        temp_int = input_base_meterage_max;
+                        input_base_meterage_max = input_base_meterage_min;
+                        input_base_meterage_min = temp_int;
+                    }
+
                     fflush(stdin);
                     system("cls");
                     break;
 
                 case 5:
                     decorator1();
-                    printf("Enter the base meterage\n\n\n\n\n");
-                    decorator1();
-                    printf("Entered base meterage :");
-                    scanf("%s", input_base_meterage);
-                    fflush(stdin);
-                    system("cls");
-                    break;
-
-                case 6:
-                    decorator1();
-                    printf("Enter the price\n\n\n\n\n");
+                    printf("Enter the price range\n\n\n\n\n");
                     decorator1();
                     printf("Entered price :");
-                    scanf("%d", &input_price);
+                    scanf("%d", &input_price_max);
+
+                    printf("\nEntered price :");
+                    scanf("%d", &input_price_min);
+
+                    // max and min returner
+                    if (input_price_min > input_price_max) {
+                        temp_int = input_price_max;
+                        input_price_max = input_price_min;
+                        input_price_min = temp_int;
+                    }
+
                     system("cls");
                     break;
 
@@ -2174,16 +2225,17 @@ int buy() {
                 case 8:
                     system("cls");
                     return 0;
+                    break;
             }
 
             struct buy_residential_property {
                 char status[20];
                 char address[100];
-                char building_lifespan[10];
-                char building_meterage[10];
+                int building_lifespan;
+                int building_meterage;
                 char building_municipal_area[5];
                 char floor[10];
-                char base_meterage[10];
+                int base_meterage;
                 char owner_phone_number[40];
                 char rooms[10];
                 char type[20];
@@ -2194,18 +2246,19 @@ int buy() {
 
             fp = fopen("sell_residential_properties.txt", "r");
 
+            results = 0;
+            NO_properties = 0;
+
             while (feof(fp) == 0) {
-
                 temp = malloc(sizeof(struct buy_residential_property));
-
                 fscanf(fp, "%*s %s\n", temp->status);
                 fscanf(fp, "%*s %s\n", temp->address);
                 space_returner(temp->address);
-                fscanf(fp, "%*s %s\n", temp->building_lifespan);
-                fscanf(fp, "%*s %s\n", temp->building_meterage);
+                fscanf(fp, "%*s %d\n", &temp->building_lifespan);
+                fscanf(fp, "%*s %d\n", &temp->building_meterage);
                 fscanf(fp, "%*s %s\n", temp->building_municipal_area);
                 fscanf(fp, "%*s %s\n", temp->floor);
-                fscanf(fp, "%*s %s\n", temp->base_meterage);
+                fscanf(fp, "%*s %d\n", &temp->base_meterage);
                 fscanf(fp, "%*s %s\n", temp->owner_phone_number);
                 fscanf(fp, "%*s %s\n", temp->rooms);
                 fscanf(fp, "%*s %s\n", temp->type);
@@ -2219,54 +2272,61 @@ int buy() {
 
                 if (searching_choice == 3 && strcmp(temp->building_municipal_area, input_municipal_area) == 0 &&
                     strcmp(temp->status, "ACTIVE") == 0) {
+                    results += 1;
                     printf("ADDRESS : %s\n", temp->address);
-                    printf("BUILDING LIFESPAN : %s\n", temp->building_lifespan);
-                    printf("BUILDING METERAGE : %s\n", temp->building_meterage);
+                    printf("BUILDING LIFESPAN : %d\n", temp->building_lifespan);
+                    printf("BUILDING METERAGE : %d\n", temp->building_meterage);
                     printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
                     printf("FLOOR : %s\n", temp->floor);
-                    printf("BASE METERAGE : %s\n", temp->base_meterage);
+                    printf("BASE METERAGE : %d\n", temp->base_meterage);
                     printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                     printf("ROOMS : %s\n", temp->rooms);
                     printf("TYPE : %s\n", temp->type);
                     printf("PRICE : %d\n", temp->price);
                     decorator1();
                 } else {
-                    if (searching_choice == 4 && strcmp(temp->building_lifespan, input_building_lifespan) == 0 &&
+                    if (searching_choice == 6 &&
+                        (temp->building_lifespan >= input_building_lifespan_min && temp->building_lifespan <= input_building_lifespan_max) &&
                         strcmp(temp->status, "ACTIVE") == 0) {
+                        results += 1;
                         printf("ADDRESS : %s\n", temp->address);
-                        printf("BUILDING LIFESPAN : %s\n", temp->building_lifespan);
-                        printf("BUILDING METERAGE : %s\n", temp->building_meterage);
+                        printf("BUILDING LIFESPAN : %d\n", temp->building_lifespan);
+                        printf("BUILDING METERAGE : %d\n", temp->building_meterage);
                         printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
                         printf("FLOOR : %s\n", temp->floor);
-                        printf("BASE METERAGE : %s\n", temp->base_meterage);
+                        printf("BASE METERAGE : %d\n", temp->base_meterage);
                         printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                         printf("ROOMS : %s\n", temp->rooms);
                         printf("TYPE : %s\n", temp->type);
                         printf("PRICE : %d\n", temp->price);
                         decorator1();
                     } else {
-                        if (searching_choice == 5 && strcmp(temp->base_meterage, input_base_meterage) == 0 &&
+                        if (searching_choice == 4 &&
+                            (temp->base_meterage >= input_base_meterage_min && temp->base_meterage <= input_base_meterage_max) &&
                             strcmp(temp->status, "ACTIVE") == 0) {
+                            results += 1;
                             printf("ADDRESS : %s\n", temp->address);
-                            printf("BUILDING LIFESPAN : %s\n", temp->building_lifespan);
-                            printf("BUILDING METERAGE : %s\n", temp->building_meterage);
+                            printf("BUILDING LIFESPAN : %d\n", temp->building_lifespan);
+                            printf("BUILDING METERAGE : %d\n", temp->building_meterage);
                             printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
                             printf("FLOOR : %s\n", temp->floor);
-                            printf("BASE METERAGE : %s\n", temp->base_meterage);
+                            printf("BASE METERAGE : %d\n", temp->base_meterage);
                             printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                             printf("ROOMS : %s\n", temp->rooms);
                             printf("TYPE : %s\n", temp->type);
                             printf("PRICE : %d\n", temp->price);
                             decorator1();
                         } else {
-                            if (searching_choice == 6 && temp->price == input_price &&
+                            if (searching_choice == 5 &&
+                                (temp->price >= input_price_min && temp->price <= input_price_max) &&
                                 strcmp(temp->status, "ACTIVE") == 0) {
+                                results += 1;
                                 printf("ADDRESS : %s\n", temp->address);
-                                printf("BUILDING LIFESPAN : %s\n", temp->building_lifespan);
-                                printf("BUILDING METERAGE : %s\n", temp->building_meterage);
+                                printf("BUILDING LIFESPAN : %d\n", temp->building_lifespan);
+                                printf("BUILDING METERAGE : %d\n", temp->building_meterage);
                                 printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
                                 printf("FLOOR : %s\n", temp->floor);
-                                printf("BASE METERAGE : %s\n", temp->base_meterage);
+                                printf("BASE METERAGE : %d\n", temp->base_meterage);
                                 printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                                 printf("ROOMS : %s\n", temp->rooms);
                                 printf("TYPE : %s\n", temp->type);
@@ -2275,12 +2335,13 @@ int buy() {
                             } else {
                                 if (searching_choice == 7 && strcmp(temp->rooms, input_NO_rooms) == 0 &&
                                     strcmp(temp->status, "ACTIVE") == 0) {
+                                    results += 1;
                                     printf("ADDRESS : %s\n", temp->address);
-                                    printf("BUILDING LIFESPAN : %s\n", temp->building_lifespan);
-                                    printf("BUILDING METERAGE : %s\n", temp->building_meterage);
+                                    printf("BUILDING LIFESPAN : %d\n", temp->building_lifespan);
+                                    printf("BUILDING METERAGE : %d\n", temp->building_meterage);
                                     printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
                                     printf("FLOOR : %s\n", temp->floor);
-                                    printf("BASE METERAGE : %s\n", temp->base_meterage);
+                                    printf("BASE METERAGE : %d\n", temp->base_meterage);
                                     printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                                     printf("ROOMS : %s\n", temp->rooms);
                                     printf("TYPE : %s\n", temp->type);
@@ -2304,8 +2365,8 @@ int buy() {
                 }
             }
 
-            if (NO_properties == 0) {
-                printf("\nNo results found\nPress any key to go back ...");
+            if (results == 0) {
+                printf("\nNo results found\nPress any key to return ...");
                 getch();
                 system("cls");
                 continue;
@@ -2345,32 +2406,66 @@ int buy() {
                         system("cls");
                         break;
 
+                    case 6:
+                        decorator1();
+                        printf("Enter the building lifespan range\n\n\n\n\n");
+                        decorator1();
+
+                        printf("Entered building lifespan :");
+                        scanf("%d", &input_building_lifespan_max);
+
+                        printf("\nEntered building lifespan :");
+                        scanf("%d", &input_building_lifespan_min);
+
+                        // max and min returner
+                        if (input_building_lifespan_min > input_building_lifespan_max) {
+                            temp_int = input_building_lifespan_max;
+                            input_building_lifespan_max = input_building_lifespan_min;
+                            input_building_lifespan_min = temp_int;
+                        }
+
+                        fflush(stdin);
+                        system("cls");
+                        break;
+
                     case 4:
                         decorator1();
-                        printf("Enter the building lifespan\n\n\n\n\n");
+                        printf("Enter the base meterage range\n\n\n\n\n");
                         decorator1();
-                        printf("Entered building lifespan :");
-                        scanf("%s", input_building_lifespan);
+                        printf("Entered base meterage :");
+                        scanf("%d", &input_base_meterage_max);
+
+                        printf("\nEntered base meterage :");
+                        scanf("%d", &input_base_meterage_min);
+
+                        // max and min returner
+                        if (input_base_meterage_min > input_base_meterage_max) {
+                            temp_int = input_base_meterage_max;
+                            input_base_meterage_max = input_base_meterage_min;
+                            input_base_meterage_min = temp_int;
+                        }
+
                         fflush(stdin);
                         system("cls");
                         break;
 
                     case 5:
                         decorator1();
-                        printf("Enter the base meterage\n\n\n\n\n");
-                        decorator1();
-                        printf("Entered base meterage :");
-                        scanf("%s", input_base_meterage);
-                        fflush(stdin);
-                        system("cls");
-                        break;
-
-                    case 6:
-                        decorator1();
-                        printf("Enter the price\n\n\n\n\n");
+                        printf("Enter the price range\n\n\n\n\n");
                         decorator1();
                         printf("Entered price :");
-                        scanf("%d", &input_price);
+                        scanf("%d", &input_price_max);
+
+                        printf("\nEntered price :");
+                        scanf("%d", &input_price_min);
+
+                        // max and min returner
+                        if (input_price_min > input_price_max) {
+                            temp_int = input_price_max;
+                            input_price_max = input_price_min;
+                            input_price_min = temp_int;
+                        }
+
                         system("cls");
                         break;
 
@@ -2392,11 +2487,11 @@ int buy() {
                 struct buy_office_property {
                     char status[20];
                     char address[100];
-                    char building_lifespan[10];
-                    char building_meterage[10];
+                    int building_lifespan;
+                    int building_meterage;
                     char building_municipal_area[5];
                     char floor[10];
-                    char base_meterage[10];
+                    int base_meterage;
                     char owner_phone_number[40];
                     char rooms[10];
                     char type[20];
@@ -2407,17 +2502,20 @@ int buy() {
 
                 fp = fopen("sell_office_properties.txt", "r");
 
+                NO_properties = 0;
+                results = 0;
+
                 while (feof(fp) == 0) {
                     temp = malloc(sizeof(struct buy_office_property));
 
                     fscanf(fp, "%*s %s\n", temp->status);
                     fscanf(fp, "%*s %s\n", temp->address);
                     space_returner(temp->address);
-                    fscanf(fp, "%*s %s\n", temp->building_lifespan);
-                    fscanf(fp, "%*s %s\n", temp->building_meterage);
+                    fscanf(fp, "%*s %d\n", &temp->building_lifespan);
+                    fscanf(fp, "%*s %d\n", &temp->building_meterage);
                     fscanf(fp, "%*s %s\n", temp->building_municipal_area);
                     fscanf(fp, "%*s %s\n", temp->floor);
-                    fscanf(fp, "%*s %s\n", temp->base_meterage);
+                    fscanf(fp, "%*s %d\n", &temp->base_meterage);
                     fscanf(fp, "%*s %s\n", temp->owner_phone_number);
                     fscanf(fp, "%*s %s\n", temp->rooms);
                     fscanf(fp, "%*s %s\n", temp->type);
@@ -2431,54 +2529,61 @@ int buy() {
 
                     if (searching_choice == 3 && strcmp(temp->building_municipal_area, input_municipal_area) == 0 &&
                         strcmp(temp->status, "ACTIVE") == 0) {
+                        results += 1;
                         printf("ADDRESS : %s\n", temp->address);
-                        printf("BUILDING LIFESPAN : %s\n", temp->building_lifespan);
-                        printf("BUILDING METERAGE : %s\n", temp->building_meterage);
+                        printf("BUILDING LIFESPAN : %d\n", temp->building_lifespan);
+                        printf("BUILDING METERAGE : %d\n", temp->building_meterage);
                         printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
                         printf("FLOOR : %s\n", temp->floor);
-                        printf("BASE METERAGE : %s\n", temp->base_meterage);
+                        printf("BASE METERAGE : %d\n", temp->base_meterage);
                         printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                         printf("ROOMS : %s\n", temp->rooms);
                         printf("TYPE : %s\n", temp->type);
                         printf("PRICE : %d\n", temp->price);
                         decorator1();
                     } else {
-                        if (searching_choice == 4 && strcmp(temp->building_lifespan, input_building_lifespan) == 0 &&
+                        if (searching_choice == 4 &&
+                            (temp->building_lifespan >= input_building_lifespan_min && temp->building_lifespan <= input_building_lifespan_max) &&
                             strcmp(temp->status, "ACTIVE") == 0) {
+                            results += 1;
                             printf("ADDRESS : %s\n", temp->address);
-                            printf("BUILDING LIFESPAN : %s\n", temp->building_lifespan);
-                            printf("BUILDING METERAGE : %s\n", temp->building_meterage);
+                            printf("BUILDING LIFESPAN : %d\n", temp->building_lifespan);
+                            printf("BUILDING METERAGE : %d\n", temp->building_meterage);
                             printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
                             printf("FLOOR : %s\n", temp->floor);
-                            printf("BASE METERAGE : %s\n", temp->base_meterage);
+                            printf("BASE METERAGE : %d\n", temp->base_meterage);
                             printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                             printf("ROOMS : %s\n", temp->rooms);
                             printf("TYPE : %s\n", temp->type);
                             printf("PRICE : %d\n", temp->price);
                             decorator1();
                         } else {
-                            if (searching_choice == 5 && strcmp(temp->base_meterage, input_base_meterage) == 0 &&
+                            if (searching_choice == 5 &&
+                                (temp->base_meterage >= input_base_meterage_min && temp->base_meterage <= input_base_meterage_max) &&
                                 strcmp(temp->status, "ACTIVE") == 0) {
+                                results += 1;
                                 printf("ADDRESS : %s\n", temp->address);
-                                printf("BUILDING LIFESPAN : %s\n", temp->building_lifespan);
-                                printf("BUILDING METERAGE : %s\n", temp->building_meterage);
+                                printf("BUILDING LIFESPAN : %d\n", temp->building_lifespan);
+                                printf("BUILDING METERAGE : %d\n", temp->building_meterage);
                                 printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
                                 printf("FLOOR : %s\n", temp->floor);
-                                printf("BASE METERAGE : %s\n", temp->base_meterage);
+                                printf("BASE METERAGE : %d\n", temp->base_meterage);
                                 printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                                 printf("ROOMS : %s\n", temp->rooms);
                                 printf("TYPE : %s\n", temp->type);
                                 printf("PRICE : %d\n", temp->price);
                                 decorator1();
                             } else {
-                                if (searching_choice == 6 && temp->price == input_price &&
+                                if (searching_choice == 6 &&
+                                    (temp->price >= input_price_min && temp->price <= input_price_max) &&
                                     strcmp(temp->status, "ACTIVE") == 0) {
+                                    results += 1;
                                     printf("ADDRESS : %s\n", temp->address);
-                                    printf("BUILDING LIFESPAN : %s\n", temp->building_lifespan);
-                                    printf("BUILDING METERAGE : %s\n", temp->building_meterage);
+                                    printf("BUILDING LIFESPAN : %d\n", temp->building_lifespan);
+                                    printf("BUILDING METERAGE : %d\n", temp->building_meterage);
                                     printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
                                     printf("FLOOR : %s\n", temp->floor);
-                                    printf("BASE METERAGE : %s\n", temp->base_meterage);
+                                    printf("BASE METERAGE : %d\n", temp->base_meterage);
                                     printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                                     printf("ROOMS : %s\n", temp->rooms);
                                     printf("TYPE : %s\n", temp->type);
@@ -2487,19 +2592,19 @@ int buy() {
                                 } else {
                                     if (searching_choice == 7 && strcmp(temp->rooms, input_NO_rooms) == 0 &&
                                         strcmp(temp->status, "ACTIVE") == 0) {
+                                        results += 1;
                                         printf("ADDRESS : %s\n", temp->address);
-                                        printf("BUILDING LIFESPAN : %s\n", temp->building_lifespan);
-                                        printf("BUILDING METERAGE : %s\n", temp->building_meterage);
+                                        printf("BUILDING LIFESPAN : %d\n", temp->building_lifespan);
+                                        printf("BUILDING METERAGE : %d\n", temp->building_meterage);
                                         printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
                                         printf("FLOOR : %s\n", temp->floor);
-                                        printf("BASE METERAGE : %s\n", temp->base_meterage);
+                                        printf("BASE METERAGE : %d\n", temp->base_meterage);
                                         printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                                         printf("ROOMS : %s\n", temp->rooms);
                                         printf("TYPE : %s\n", temp->type);
                                         printf("PRICE : %d\n", temp->price);
                                         decorator1();
                                     }
-
                                 }
                             }
                         }
@@ -2516,8 +2621,8 @@ int buy() {
                     }
                 }
 
-                if (NO_properties == 0) {
-                    printf("\nNo results found\nPress any key to go back ...");
+                if (results == 0) {
+                    printf("\nNo results found\nPress any key to return ...");
                     getch();
                     system("cls");
                     continue;
@@ -2559,30 +2664,41 @@ int buy() {
 
                         case 4:
                             decorator1();
-                            printf("Enter the building lifespan\n\n\n\n\n");
+                            printf("Enter the land meterage range\n\n\n\n\n");
                             decorator1();
-                            printf("Entered building lifespan :");
-                            scanf("%s", input_building_lifespan);
-                            fflush(stdin);
+                            printf("Entered land meterage :");
+                            scanf("%d", &input_base_meterage_max);
+
+                            printf("\nEntered land meterage :");
+                            scanf("%d", &input_base_meterage_min);
+
+                            // max and min returner
+                            if (input_base_meterage_min > input_base_meterage_max) {
+                                temp_int = input_base_meterage_max;
+                                input_base_meterage_max = input_base_meterage_min;
+                                input_base_meterage_min = temp_int;
+                            }
+
                             system("cls");
                             break;
 
                         case 5:
                             decorator1();
-                            printf("Enter the base meterage\n\n\n\n\n");
-                            decorator1();
-                            printf("Entered base meterage :");
-                            scanf("%s", input_base_meterage);
-                            fflush(stdin);
-                            system("cls");
-                            break;
-
-                        case 6:
-                            decorator1();
-                            printf("Enter the price\n\n\n\n\n");
+                            printf("Enter the price range\n\n\n\n\n");
                             decorator1();
                             printf("Entered price :");
-                            scanf("%d", &input_price);
+                            scanf("%d", &input_price_max);
+
+                            printf("\nEntered price :");
+                            scanf("%d", &input_price_min);
+
+                            // max and min returner
+                            if (input_price_min > input_price_max) {
+                                temp_int = input_price_max;
+                                input_price_max = input_price_min;
+                                input_price_min = temp_int;
+                            }
+
                             system("cls");
                             break;
 
@@ -2595,7 +2711,7 @@ int buy() {
                         char status[20];
                         char address[100];
                         char building_municipal_area[5];
-                        char land_meterage[10];
+                        int land_meterage;
                         char owner_phone_number[40];
                         char type[20];
                         int price;
@@ -2605,6 +2721,9 @@ int buy() {
 
                     fp = fopen("sell_land_properties.txt", "r");
 
+                    NO_properties = 0;
+                    results = 0;
+
                     while (feof(fp) == 0) {
 
                         temp = malloc(sizeof(struct buy_land_property));
@@ -2613,11 +2732,12 @@ int buy() {
                         fscanf(fp, "%*s %s\n", temp->address);
                         space_returner(temp->address);
                         fscanf(fp, "%*s %s\n", temp->building_municipal_area);
-                        fscanf(fp, "%*s %s\n", temp->land_meterage);
+                        fscanf(fp, "%*s %d\n", &temp->land_meterage);
                         fscanf(fp, "%*s %s\n", temp->owner_phone_number);
                         fscanf(fp, "%*s %s\n", temp->type);
                         fscanf(fp, "%*s %d\n", &temp->price);
                         fscanf(fp, "%s\n", decorator_skip);
+
 
                         if (strcmp(temp->status, "ACTIVE") == 0) {
                             NO_properties += 1;
@@ -2626,35 +2746,39 @@ int buy() {
 
                         if (searching_choice == 3 && strcmp(temp->building_municipal_area, input_municipal_area) == 0 &&
                             strcmp(temp->status, "ACTIVE") == 0) {
+                            results += 1;
                             printf("ADDRESS : %s\n", temp->address);
                             printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
-                            printf("LAND METERAGE : %s\n", temp->land_meterage);
+                            printf("LAND METERAGE : %d\n", temp->land_meterage);
                             printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                             printf("TYPE : %s\n", temp->type);
                             printf("PRICE : %d\n", temp->price);
                             decorator1();
                         } else {
-                            if (searching_choice == 5 && strcmp(temp->land_meterage, input_base_meterage) == 0 &&
+                            if (searching_choice == 4 &&
+                                (temp->land_meterage >= input_base_meterage_min && temp->land_meterage <= input_base_meterage_max) &&
                                 strcmp(temp->status, "ACTIVE") == 0) {
+                                results += 1;
                                 printf("ADDRESS : %s\n", temp->address);
                                 printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
-                                printf("BASE METERAGE : %s\n", temp->land_meterage);
+                                printf("BASE METERAGE : %d\n", temp->land_meterage);
                                 printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                                 printf("TYPE : %s\n", temp->type);
                                 printf("PRICE : %d\n", temp->price);
                                 decorator1();
                             } else {
-                                if (searching_choice == 6 && temp->price == input_price &&
+                                if (searching_choice == 5 &&
+                                    (temp->price >= input_price_min && temp->price <= input_price_max)&&
                                     strcmp(temp->status, "ACTIVE") == 0) {
+                                    results += 1;
                                     printf("ADDRESS : %s\n", temp->address);
                                     printf("BUILDING MUNICIPAL AREA : %s\n", temp->building_municipal_area);
-                                    printf("BASE METERAGE : %s\n", temp->land_meterage);
+                                    printf("BASE METERAGE : %d\n", temp->land_meterage);
                                     printf("OWNER PHONE NUMBER : %s\n", temp->owner_phone_number);
                                     printf("TYPE : %s\n", temp->type);
                                     printf("PRICE : %d\n", temp->price);
                                     decorator1();
                                 }
-
                             }
                         }
                     }
@@ -2670,8 +2794,8 @@ int buy() {
                     }
 
 
-                    if (NO_properties == 0) {
-                        printf("\nNo results found\nPress any key to go back ...");
+                    if (results == 0) {
+                        printf("\nNo results found\nPress any key to return ...");
                         getch();
                         system("cls");
                         continue;
