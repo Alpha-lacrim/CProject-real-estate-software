@@ -3683,7 +3683,7 @@ int remove_sell_property() {
     while (1) {
         system("cls");
         decorator1();
-        printf("\t\t\t\t   REMOVE A PROPERTY FROM THE SELL LIST\n");
+        printf("REMOVE A PROPERTY FROM THE SELL LIST\n");
         decorator1();
         printf("1) Residential Property\n");
         printf("2) Office Property\n");
@@ -4018,7 +4018,7 @@ int remove_rent_property() {
     while (1) {
         system("cls");
         decorator1();
-        printf("\t\t\t\t   REMOVE A PROPERTY FROM THE RENTAL PROPERTIES LIST\n");
+        printf("REMOVE A PROPERTY FROM THE RENTAL PROPERTIES LIST\n");
         decorator1();
         printf("1) Residential Property\n");
         printf("2) Office Property\n");
