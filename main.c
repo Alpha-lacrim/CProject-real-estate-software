@@ -2355,7 +2355,7 @@ int buy() {
                 }
             }
 
-            if (results == 0) {
+            if (results == 0 && searching_choice > 2) {
                 printf("\nNo Results Found\nPress any key to return ...");
                 getch();
                 system("cls");
@@ -2611,7 +2611,7 @@ int buy() {
                     }
                 }
 
-                if (results == 0) {
+                if (results == 0 && searching_choice > 2) {
                     printf("\nNo Results Found\nPress any key to return ...");
                     getch();
                     system("cls");
@@ -2784,7 +2784,7 @@ int buy() {
                     }
 
 
-                    if (results == 0) {
+                    if (results == 0 && searching_choice > 2) {
                         printf("\nNo Results Found\nPress any key to return ...");
                         getch();
                         system("cls");
@@ -3110,7 +3110,7 @@ int renting() {
                 }
             }
 
-            if (results == 0) {
+            if (results == 0 && searching_choice > 2) {
                 printf("\nNo Results Found\nPress any key to return ...");
                 getch();
                 system("cls");
@@ -3390,7 +3390,7 @@ int renting() {
                     }
                 }
 
-                if (results == 0) {
+                if (results == 0 && searching_choice > 2) {
                     printf("\nNo Results Found\nPress any key to return ...");
                     getch();
                     system("cls");
@@ -3584,7 +3584,7 @@ int renting() {
                     }
 
 
-                    if (results == 0) {
+                    if (results == 0 && searching_choice > 2) {
                         printf("\nNo Results Found\nPress any key to return ...");
                         getch();
                         system("cls");
@@ -4856,13 +4856,13 @@ int main() {
     printf("\t\t\t\t   WELCOME !\n");
     while (1) {
         decorator1();
-        printf("Please select your choice :\n");
+        printf("Please Select Your Choice :\n");
         decorator1();
         printf("1) SIGN UP\n2) SIGN IN\n\n\n9) Exit\n");
 
         decorator1();
 
-        printf(">>Your choice :");
+        printf(">> Your Choice :");
         scanf("%s", choice);
         system("cls");
 
@@ -4881,9 +4881,9 @@ int main() {
                 decorator1();
                 printf("\t\t\t\t   SIGN IN\n");
                 decorator1();
-                printf("Enter your username\n\n\n\n\n");
+                printf("Enter Your Username\n\n\n\n\n");
                 decorator1();
-                printf(">>Entered username :");
+                printf(">> Entered Username :");
                 scanf("%s", log_username);
                 fflush(stdin);
                 strlwr(log_username);
@@ -4892,9 +4892,9 @@ int main() {
                 decorator1();
                 printf("\t\t\t\t   SIGN IN\n");
                 decorator1();
-                printf("Enter your password\n\n\n\n\n");
+                printf("Enter Your Password\n\n\n\n\n");
                 decorator1();
-                printf(">>Entered password :");
+                printf(">> Entered Password :");
 
                 for (i = 0, loop_checker = 0; (ch = _getch()) != 13; i++) {
                     if (ch == 8) {
@@ -4967,7 +4967,7 @@ int main() {
                 }
 
                 if (loop_checker == 0) {
-                    printf("\nNo results found\nPress any key to go back ...");
+                    printf("\nNo Results Found\nPress any key to return ...");
                     getch();
                     system("cls");
                     continue;
@@ -5001,7 +5001,7 @@ int main() {
             break;
 
         } else {
-            printf("\n*** Wrong input ! ***\nPress any key to continue ...");
+            printf("\n*** WRONG INPUT! ***\nPress any key to continue ...");
             getch();
             system("cls");
             continue;
@@ -5013,14 +5013,14 @@ int main() {
         decorator1();
         printf("\t\t\t\t   MAIN MENU\n");
         decorator1();
-        printf("1) Add item\n");
-        printf("2) Remove item\n");
+        printf("1) Add Item\n");
+        printf("2) Remove Item\n");
         printf("3) Reports\n");
         printf("4) Profile\n\n");
-        printf("9) Exit from the account\n");
+        printf("9) Exit From The Account\n");
         decorator1();
 
-        printf(">>Your choice :");
+        printf(">> Your Choice :");
         scanf("%s", choice);
         fflush(stdin);
         strlwr(choice);
@@ -5055,7 +5055,7 @@ int main() {
                         }
 
                         else {
-                            printf("*** Wrong Input ***\nPress any key to continue ...");
+                            printf("*** WRONG INPUT! ***\nPress any key to continue ...");
                             getch();
                             system("cls");
                         }
