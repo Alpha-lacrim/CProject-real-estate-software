@@ -683,9 +683,6 @@ int sign_up() {
                     }
                     phone_number[0] = '0';
                 }
-                for(i = 11; i < 40; i++) {
-                    phone_number[i] = (char)NULL;
-                }
 
                 struct user {
                     char role[30];
