@@ -179,9 +179,9 @@ int sign_up() {
         decorator1();
         printf("\t\t\t   SIGN UP\n");
         decorator1();
-        printf("Enter the role\n1) ADMIN\n2) USER\n\n8) Back\n");
+        printf("Enter The Role\n1) ADMIN\n2) USER\n\n8) Back\n");
         decorator1();
-        printf("Entered role :");
+        printf("Entered Role :");
         scanf("%s", role);
         fflush(stdin);
         strlwr(role);
@@ -192,7 +192,7 @@ int sign_up() {
         }
 
         if (strcmp(role, "admin") == 0 || strcmp(role, "1") == 0) {
-            printf("Enter the password :");
+            printf("Enter The Password :");
 
 
             for (i = 0, loop_checker = 0; (ch = _getch()) != 13; i++) {
@@ -219,7 +219,7 @@ int sign_up() {
             }
 
             else {
-                printf("\nWrong password, only owner can create admin\nPress any key to go back ...");
+                printf("\nWrong Password, only owner can create admin\nPress any key to return ...");
                 getch();
                 system("cls");
                 continue;
@@ -230,7 +230,7 @@ int sign_up() {
                 strcpy(role, "user");
             }
             else {
-                printf("Wrong input !");
+                printf("WRONG INPUT!");
                 system("cls");
                 continue;
             }
@@ -243,12 +243,12 @@ int sign_up() {
 
             printf("SIGN UP\n");
             decorator1();
-            printf("Please enter your username");
+            printf("Please Enter Your Username");
             printf("\n\n\n\n\n");
 
             decorator1();
 
-            printf("Entered username :");
+            printf("Entered Username :");
             scanf("%s", username);
             fflush(stdin);
             strlwr(username);
@@ -259,7 +259,7 @@ int sign_up() {
                 }
             }
             if (count1 != 0) {
-                printf("Your username can NOT contain spaces or tabs !\n Press any key to go back ...");
+                printf("Your Username can NOT contain spaces or tabs !\n Press any key to return ...");
                 getch();
                 system("cls");
                 continue;
@@ -267,7 +267,7 @@ int sign_up() {
 
             else {
                 if (strlen(username) < 5) {
-                    printf("(UN1) Your username is too short !\n Press any key to go back ...");
+                    printf("(UN1) Your Username is too short !\n Press any key to return ...");
                     getch();
                     system("cls");
                     continue;
@@ -299,7 +299,7 @@ int sign_up() {
                 if (strcmp(temp->username, username) == 0) {
                     system("cls");
                     decorator1();
-                    printf("This username already exists in the system\nPlease enter another username ...\nPress any key to continue\n");
+                    printf("This Username already exists in the system\nPlease enter another Username ...\nPress any key to continue\n");
                     decorator1();
                     getch();
                     return 0;
@@ -327,7 +327,7 @@ int sign_up() {
 
             printf("SIGN UP\n");
             decorator1();
-            printf("Please enter your name");
+            printf("Please enter your Name");
             printf("\n\n\n\n\n");
 
             decorator1();
@@ -345,7 +345,7 @@ int sign_up() {
                 }
             }
             if (count1 != 0) {
-                printf("Your name can NOT contain digits !\nPress any key to go back ...");
+                printf("Your Name can NOT contain digits !\nPress any key to return ...");
                 getch();
                 system("cls");
                 continue;
@@ -357,7 +357,7 @@ int sign_up() {
                 }
             }
             if (count1 != 0) {
-                printf("Your name can NOT contain spaces or tabs !\n Press any key to go back ...");
+                printf("Your Name can NOT contain spaces or tabs !\n Press any key to return ...");
                 getch();
                 system("cls");
                 continue;
@@ -370,12 +370,12 @@ int sign_up() {
 
             printf("SIGN UP\n");
             decorator1();
-            printf("Please enter your last name");
+            printf("Please Enter Your Last Name");
             printf("\n\n\n\n8) Back\n");
 
             decorator1();
 
-            printf("Entered last name :");
+            printf("Entered Last Name :");
             scanf("%s", last_name);
             fflush(stdin);
             strlwr(last_name);
@@ -394,7 +394,7 @@ int sign_up() {
             }
 
             if (count2 != 0) {
-                printf("Your last name can NOT contain digits !\nPress any key to go back ...");
+                printf("Your Last Name can NOT contain digits !\nPress any key to return ...");
                 getch();
                 system("cls");
                 continue;
@@ -404,7 +404,7 @@ int sign_up() {
                 system("cls");
                 printf("SIGN UP\n");
                 decorator1();
-                printf("Enter your citizen ID\n\n\n\n\n");
+                printf("Enter your Citizen ID\n\n\n\n\n");
                 decorator1();
 
                 printf("Entered citizen ID:");
@@ -418,14 +418,14 @@ int sign_up() {
                 }
 
                 if (count3 != 0) {
-                    printf("Your citizen ID should be numeric !\nPress any key to go back");
+                    printf("Your Citizen ID should be numeric !\nPress any key to return");
                     getch();
                     system("cls");
                     continue;
                 }
 
                 if (strlen(citizen_id) != 10) {
-                    printf("Your citizen ID should contain 10 digits !\nPress any key to go back");
+                    printf("Your Citizen ID should contain 10 digits !\nPress any key to return");
                     getch();
                     system("cls");
                     continue;
@@ -440,17 +440,17 @@ int sign_up() {
                 printf("SIGN UP\n");
                 decorator1();
 
-                printf("Enter your birth date (Christian)");
+                printf("Enter Your Birthdate (Christian)");
                 printf("\n\n\n\n\n");
 
                 decorator1();
 
-                printf("Entered birth date (Year/Month/Day) :");
+                printf("Entered Birthdate (Year/Month/Day) :");
                 scanf("%s", input_BD);
                 fflush(stdin);
 
                 if (strlen(input_BD) > 10) {
-                    printf("Wrong input !\nPress any key to go back ...");
+                    printf("WRONG INPUT!\nPress any key to return ...");
                     getch();
                     continue;
                 }
@@ -458,24 +458,24 @@ int sign_up() {
                 sscanf(input_BD, "%d %*c %d %*c %d", &birthdate[0], &birthdate[1], &birthdate[2]);
 
                 if (birthdate[0] < 1900 || birthdate[0] > 2023) {
-                    printf("Wrong input !\nPress any key to go back ...");
+                    printf("WRONG INPUT!\nPress any key to go back ...");
                     getch();
                     continue;
                 } else {
                     if (birthdate[1] <= 0 || birthdate[1] > 12) {
-                        printf("Wrong input !\nPress any key to go back ...");
+                        printf("WRONG INPUT!\nPress any key to return ...");
                         getch();
                         continue;
                     } else {
                         if (birthdate[2] > 31 || birthdate[2] <= 0) {
-                            printf("Wrong input !\nPress any key to go back ...");
+                            printf("WRONG INPUT!\nPress any key to return ...");
                             getch();
                             continue;
                         }
                     }
                 }
 
-                printf("\nyear : %d, month : %d, day : %d\n", birthdate[0], birthdate[1], birthdate[2]);
+                printf("\nYear : %d, Month : %d, Day : %d\n", birthdate[0], birthdate[1], birthdate[2]);
                 printf("Do you want to continue?\n");
                 scanf("%s", choice);
                 fflush(stdin);
@@ -486,14 +486,14 @@ int sign_up() {
                 else {
                     if (strcmp(choice, "yes") == 0) {
                         if (birthdate[0] == 0 || birthdate[1] == 0 || birthdate[2] == 0) {
-                            printf("Wrong input !\nPress any key to go back ...");
+                            printf("WRONG INPUT!\nPress any key to go back ...");
                             getch();
                             system("cls");
                             continue;
                         }
                     }
                     else {
-                        printf("Wrong input !\nPress any key to continue ...");
+                        printf("WRONG INPUT!\nPress any key to continue ...");
                         getch();
                         system("cls");
                         continue;
@@ -514,12 +514,12 @@ int sign_up() {
 
             printf("SIGN UP\n");
             decorator1();
-            printf("Please enter your email");
+            printf("Please Enter Your Email");
             printf("\n\n\n\n\n");
 
             decorator1();
 
-            printf("Entered email :");
+            printf("Entered Email :");
             scanf("%s", email);
             fflush(stdin);
             strlwr(email);
@@ -535,7 +535,7 @@ int sign_up() {
             }
 
             if (count1 == 0) { // email checker 1
-                printf("(EC1) Wrong email\nPress any key to go back ...");
+                printf("(EC1) WRONG EMAIL\nPress any key to go back ...");
                 getch();
                 system("cls");
                 continue;
@@ -549,7 +549,7 @@ int sign_up() {
             }
 
             if (count1 == 0) { // email checker 2
-                printf("(EC2) Wrong email\nPress any key to go back ...");
+                printf("(EC2) WRONG EMAIL\nPress any key to go back ...");
                 getch();
                 system("cls");
                 continue;
@@ -567,7 +567,7 @@ int sign_up() {
             if (strcmp(domain, ".net") == 0 || strcmp(domain, ".com") == 0 || strcmp(domain, ".org") == 0 ||
                 strcmp(domain, ".co") == 0 || strcmp(domain, ".uk") == 0 || strcmp(domain, ".ir") == 0) {
             } else { // email checker 3
-                printf("(EC3) Wrong email\nPress any key to go back ...");
+                printf("(EC3) WRONG EMAIL\nPress any key to go back ...");
                 getch();
                 system("cls");
                 continue;
@@ -605,7 +605,7 @@ int sign_up() {
                 if (strcmp(temp->email, email) == 0) {
                     system("cls");
                     decorator1();
-                    printf("This email already exists in the system\nPlease enter another email ...\nPress any key to continue\n");
+                    printf("This Email already exists in the system\nPlease enter another email ...\nPress any key to continue\n");
                     decorator1();
                     getch();
                     count2 += 1;
@@ -632,12 +632,12 @@ int sign_up() {
 
                 printf("SIGN UP\n");
                 decorator1();
-                printf("Please enter your phone number");
+                printf("Please Enter Your Phone Number");
                 printf("\n\n\n\n\n");
 
                 decorator1();
 
-                printf("Entered phone number :");
+                printf("Entered Phone Number :");
                 scanf("%s", phone_number);
                 fflush(stdin);
                 strlwr(phone_number);
@@ -650,28 +650,28 @@ int sign_up() {
 
                 if (count3 != 0) {
                     system("cls");
-                    printf("You can only enter number here\nPress any key to go back ...");
+                    printf("You can only enter number here\nPress any key to return ...");
                     getch();
                     system("cls");
                     continue;
                 }
 
                 if (strlen(phone_number) < 10 || strlen(phone_number) > 11) {
-                    printf("\nWRONG PHONE NUMBER !!!\nPress any key to go back ...");
+                    printf("\nWRONG PHONE NUMBER !!!\nPress any key to return ...");
                     getch();
                     system("cls");
                     continue;
                 }
 
                 if ((strlen(phone_number) == 11) && (phone_number[0] != '0')) {
-                    printf("\nWRONG PHONE NUMBER !!!\nPress any key to go back ...");
+                    printf("\nWRONG PHONE NUMBER !!!\nPress any key to return ...");
                     getch();
                     system("cls");
                     continue;
                 }
 
                 if ((strlen(phone_number) == 10) && (phone_number[0] == '0')) {
-                    printf("\nWRONG PHONE NUMBER !!!\nPress any key to go back ...");
+                    printf("\nWRONG PHONE NUMBER !!!\nPress any key to return ...");
                     getch();
                     system("cls");
                     continue;
@@ -754,11 +754,11 @@ int sign_up() {
 
             printf("SIGN UP\n");
             decorator1();
-            printf("Please enter your password");
+            printf("Please Enter Your Password");
             printf("\n\n\n\n\n");
             decorator1();
 
-            printf("Entered password :");
+            printf("Entered Password :");
             scanf("%s", pw_1);
             fflush(stdin);
 
@@ -809,12 +809,12 @@ int sign_up() {
 
             printf("SIGN UP\n");
             decorator1();
-            printf("Please enter again your password");
+            printf("Please Enter Again Your Password");
             printf("\n\n\n\n8) Back\n");
 
             decorator1();
 
-            printf("Re-entered password :");
+            printf("Re-entered Password :");
             scanf("%s", pw_2);
             fflush(stdin);
 
@@ -4582,10 +4582,10 @@ int profile() {
         decorator1();
         printf("\t\t\t\t   PROFILE\n");
         decorator1();
-        printf("1) Change your name/lastname\n");
-        printf("2) Change your email\n");
-        printf("3) Change your phone number\n");
-        printf("4) Change your password\n\n");
+        printf("1) Change Your Name/Lastname\n");
+        printf("2) Change Your Email\n");
+        printf("3) Change Your Phone Number\n");
+        printf("4) Change Your Password\n\n");
         printf("8) Back\n");
         decorator1();
         printf("Your choice :");
@@ -4666,9 +4666,9 @@ int profile() {
                 while (1) {
                     system("cls");
                     decorator1();
-                    printf("Enter your new name\n\n\n\n8) Back\n");
+                    printf("Enter Your New Name\n\n\n\n8) Back\n");
                     decorator1();
-                    printf("Entered name :");
+                    printf("Entered Name :");
                     gets(temp->name);
                     strlwr(temp->name);
 
@@ -4698,20 +4698,20 @@ int profile() {
 
                 system("cls");
                 decorator1();
-                printf("CHANGED SUCCESSFULLY !\npress any key to continue ...\n");
+                printf("CHANGED SUCCESSFULLY !\nPress any key to continue ...\n");
                 decorator1();
 
                 line = (NO_user - 1) * 11 + 4; // this line refers to the field of last name
                 while (1) {
                     system("cls");
                     decorator1();
-                    printf("Enter your new last name\n\n\n\n8) Back\n");
+                    printf("Enter Your New Last Name\n\n\n\n8) return to the Profile menu\n");
                     decorator1();
-                    printf("Entered last name :");
+                    printf("Entered Last Name :");
                     gets(temp->last_name);
                     strlwr(temp->last_name);
 
-                    if (strcmp(temp->last_name, "back") == 0 || strcmp(temp->last_name, "8") == 0) {
+                    if (strcmp(temp->last_name, "return") == 0 || strcmp(temp->last_name, "8") == 0) {
                         system("cls");
                         return 0;
                     }
@@ -4723,7 +4723,7 @@ int profile() {
                     }
 
                     if (err_count1 != 0) {
-                        printf("Your last name can not contain digits !\nPress any key to return ...");
+                        printf("Your Last Name can NOT contain digits !\nPress any key to return ...");
                         continue;
                     }
 
@@ -4743,9 +4743,9 @@ int profile() {
                     while (1) {
                         system("cls");
                         decorator1();
-                        printf("Enter your new email\n\n\n\n8) Back");
+                        printf("Enter Your New Email\n\n\n\n8) Back");
                         decorator1();
-                        printf("Entered email :");
+                        printf("Entered Email :");
                         gets(temp->email);
                         strlwr(temp->email);
 
@@ -4763,7 +4763,7 @@ int profile() {
                         }
 
                         if (err_count1 == 0) { // email checker 1
-                            printf("(EC1) Wrong email\nPress any key to go back ...");
+                            printf("(EC1) WRONG EMAIL\nPress any key to go back ...");
                             getch();
                             system("cls");
                             continue;
@@ -4777,7 +4777,7 @@ int profile() {
                         }
 
                         if (err_count1 == 0) { // email checker 2
-                            printf("(EC2) Wrong email\nPress any key to go back ...");
+                            printf("(EC2) WRONG EMAIL\nPress any key to go back ...");
                             getch();
                             system("cls");
                             continue;
@@ -4795,7 +4795,7 @@ int profile() {
                         if (strcmp(domain, ".net") == 0 || strcmp(domain, ".com") == 0 || strcmp(domain, ".org") == 0 ||
                             strcmp(domain, ".co") == 0 || strcmp(domain, ".uk") == 0 || strcmp(domain, ".ir") == 0) {
                         } else { // email checker 3
-                            printf("(EC3) Wrong email\nPress any key to go back ...");
+                            printf("(EC3) WRONG EMAIL\nPress any key to go back ...");
                             getch();
                             system("cls");
                             continue;
@@ -4815,9 +4815,9 @@ int profile() {
                         while (1) {
                             system("cls");
                             decorator1();
-                            printf("Enter your new phone number\n\n\n\n8) Back\n");
+                            printf("Enter Your New Phone Number\n\n\n\n8) Back\n");
                             decorator1();
-                            printf("Entered phone number :");
+                            printf("Entered Phone Number :");
                             gets(temp->phone_number);
                             strlwr(temp->phone_number);
 
@@ -4855,13 +4855,18 @@ int profile() {
                                 continue;
                             }
 
-                            for (i = strlen(temp->phone_number) - 1; i >= 0; i--) {
-                                temp->phone_number[i + 1] = temp->phone_number[i];
+                            if ((strlen(temp->phone_number) == 10) && (temp->phone_number[0] == '0')) {
+                                printf("\nWRONG PHONE NUMBER !!!\nPress any key to return ...");
+                                getch();
+                                system("cls");
+                                continue;
                             }
-                            temp->phone_number[0] = '0';
 
-                            for (i = 11; i < 40; i++) {
-                                temp->phone_number[i] = (char) NULL;
+                            if (strlen(temp->phone_number) != 11) {
+                                for (i = strlen(temp->phone_number) - 1; i >= 0; i--) {
+                                    temp->phone_number[i + 1] = temp->phone_number[i];
+                                }
+                                temp->phone_number[0] = '0';
                             }
                             //*
                         }
@@ -4879,9 +4884,9 @@ int profile() {
                             while (1) {
                                 system("cls");
                                 decorator1();
-                                printf("Enter your new password\n\n\n\n8) Back\n");
+                                printf("Enter Your New Password\n\n\n\n8) Back\n");
                                 decorator1();
-                                printf("Entered password :");
+                                printf("Entered Password :");
                                 gets(pw_1);
 
                                 if (strcmp(pw_1, "8") == 0 || strcmp(pw_1, "back") == 0) {
@@ -4933,9 +4938,9 @@ int profile() {
                                 }
                                 system("cls");
                                 decorator1();
-                                printf("Please enter again your password :\n\n\n\n8) Back\n");
+                                printf("Please Enter Again Your Password :\n\n\n\n8) Back\n");
                                 decorator1();
-                                printf("Entered password :");
+                                printf("Entered Password :");
                                 gets(pw_2);
 
                                 if (strcmp(pw_2, "back") == 0 || strcmp(pw_2, "8") == 0) {
@@ -4963,7 +4968,7 @@ int profile() {
                         }
 
                         else {
-                            printf("Wrong input !\nPress any key to return ...");
+                            printf("WRONG INPUT!\nPress any key to return ...");
                             getch();
                             system("cls");
                             continue;
