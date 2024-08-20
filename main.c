@@ -215,7 +215,7 @@ int sign_up() {
             }
             input_pw[i] = '\0';
             if (loop_checker != 0) {
-                printf("\nAn error occurred");
+                printf("\n(EPW1) : An error occurred");
                 system("cls");
                 continue;
             }
@@ -229,7 +229,7 @@ int sign_up() {
             }
 
             else {
-                printf("\nWrong Password, only owner can create admin\nPress any key to return ...");
+                printf("\n(SEPW2) : Wrong Password, only owner can create admin\nPress any key to return ...");
                 getch();
                 system("cls");
                 continue;
@@ -240,7 +240,7 @@ int sign_up() {
                 strcpy(role, "user");
             }
             else {
-                printf("WRONG INPUT!");
+                printf("(SEPW3) : WRONG INPUT!");
                 system("cls");
                 continue;
             }
@@ -259,8 +259,7 @@ int sign_up() {
             decorator1();
 
             printf("Entered Username :");
-            scanf("%s", username);
-            fflush(stdin);
+            gets(username);
             strlwr(username);
 
             for (i = 0, count1 = 0; i < strlen(username); i++) {
@@ -277,7 +276,7 @@ int sign_up() {
 
             else {
                 if (strlen(username) < 5) {
-                    printf("(UN1) Your Username is too short !\n Press any key to return ...");
+                    printf("(SEUN1) : Your Username is too short !\n Press any key to return ...");
                     getch();
                     system("cls");
                     continue;
@@ -342,10 +341,11 @@ int sign_up() {
 
             decorator1();
 
-            printf("Entered name :");
-            scanf("%s", name);
+            printf("Entered Name :");
+            gets(name);
             fflush(stdin);
             strlwr(name);
+            space_converter(name);
 
             decorator1();
 
@@ -355,7 +355,7 @@ int sign_up() {
                 }
             }
             if (count1 != 0) {
-                printf("Your Name can NOT contain digits !\nPress any key to return ...");
+                printf("(SEN1) : \nYour Name can NOT contain digits !\nPress any key to return ...");
                 getch();
                 system("cls");
                 continue;
@@ -365,12 +365,6 @@ int sign_up() {
                 if (isspace(name[i]) != 0) {
                     count1 += 1;
                 }
-            }
-            if (count1 != 0) {
-                printf("Your Name can NOT contain spaces or tabs !\n Press any key to return ...");
-                getch();
-                system("cls");
-                continue;
             }
             system("cls");
 
@@ -386,9 +380,10 @@ int sign_up() {
             decorator1();
 
             printf("Entered Last Name :");
-            scanf("%s", last_name);
+            gets(last_name);
             fflush(stdin);
             strlwr(last_name);
+            space_converter(last_name);
 
             decorator1();
 
@@ -404,7 +399,7 @@ int sign_up() {
             }
 
             if (count2 != 0) {
-                printf("Your Last Name can NOT contain digits !\nPress any key to return ...");
+                printf("(SENL1) : \nYour Last Name can NOT contain digits !\nPress any key to return ...");
                 getch();
                 system("cls");
                 continue;
@@ -428,14 +423,14 @@ int sign_up() {
                 }
 
                 if (count3 != 0) {
-                    printf("Your Citizen ID should be numeric !\nPress any key to return");
+                    printf("(SECID1) : \nYour Citizen ID should be numeric !\nPress any key to return");
                     getch();
                     system("cls");
                     continue;
                 }
 
                 if (strlen(citizen_id) != 10) {
-                    printf("Your Citizen ID should contain 10 digits !\nPress any key to return");
+                    printf("(SECID2) : \nYour Citizen ID should contain 10 digits !\nPress any key to return");
                     getch();
                     system("cls");
                     continue;
@@ -459,7 +454,7 @@ int sign_up() {
                 gets(input_BD);
 
                 if (strlen(input_BD) > 10) {
-                    printf("WRONG INPUT!\nPress any key to return ...");
+                    printf("(SEBD1) : \nWRONG INPUT!\nPress any key to return ...");
                     getch();
                     continue;
                 }
@@ -467,17 +462,17 @@ int sign_up() {
                 sscanf(input_BD, "%d %*c %d %*c %d", &birthdate[0], &birthdate[1], &birthdate[2]);
 
                 if (birthdate[0] < 1900 || birthdate[0] > 2030) {
-                    printf("WRONG INPUT!\nPress any key to go back ...");
+                    printf("(SEBD2) : \nWRONG INPUT!\nPress any key to go back ...");
                     getch();
                     continue;
                 } else {
                     if (birthdate[1] <= 0 || birthdate[1] > 12) {
-                        printf("WRONG INPUT!\nPress any key to return ...");
+                        printf("(SEBD3) : \nWRONG INPUT!\nPress any key to return ...");
                         getch();
                         continue;
                     } else {
                         if (birthdate[2] > 31 || birthdate[2] <= 0) {
-                            printf("WRONG INPUT!\nPress any key to return ...");
+                            printf("(SEBD4) : \nWRONG INPUT!\nPress any key to return ...");
                             getch();
                             continue;
                         }
@@ -495,14 +490,14 @@ int sign_up() {
                 else {
                     if (strcmp(choice, "yes") == 0) {
                         if (birthdate[0] == 0 || birthdate[1] == 0 || birthdate[2] == 0) {
-                            printf("WRONG INPUT!\nPress any key to go back ...");
+                            printf("(SEBD5) : \nWRONG INPUT!\nPress any key to go back ...");
                             getch();
                             system("cls");
                             continue;
                         }
                     }
                     else {
-                        printf("WRONG INPUT!\nPress any key to continue ...");
+                        printf("(SEBD6) : \nWRONG INPUT!\nPress any key to continue ...");
                         getch();
                         system("cls");
                         continue;
@@ -529,9 +524,20 @@ int sign_up() {
             decorator1();
 
             printf("Entered Email :");
-            scanf("%s", email);
-            fflush(stdin);
+            gets(email);
             strlwr(email);
+
+            for (i = 0, count1 = 0; i <= strlen(email); i++) { // email checker 1
+                if (isspace(email[i]) != 0) {
+                    printf("(SEE1) : \nYour email can NOT contain spaces or tabs !\nPress any key to continue ...");
+                    getch();
+                    count1 += 1;
+                }
+            }
+
+            if (count1 != 0) {
+                continue;
+            }
 
             decorator1();
             system("cls");
@@ -543,8 +549,8 @@ int sign_up() {
                 }
             }
 
-            if (count1 == 0) { // email checker 1
-                printf("(EC1) WRONG EMAIL\nPress any key to go back ...");
+            if (count1 == 0) { // email checker 2
+                printf("(SEE2) : \nWRONG EMAIL!\nPress any key to return ...");
                 getch();
                 system("cls");
                 continue;
@@ -557,8 +563,8 @@ int sign_up() {
                 }
             }
 
-            if (count1 == 0) { // email checker 2
-                printf("(EC2) WRONG EMAIL\nPress any key to go back ...");
+            if (count1 == 0) { // email checker 3
+                printf("(SEE3) : \nWRONG EMAIL!\nPress any key to return ...");
                 getch();
                 system("cls");
                 continue;
@@ -575,8 +581,8 @@ int sign_up() {
 
             if (strcmp(domain, ".net") == 0 || strcmp(domain, ".com") == 0 || strcmp(domain, ".org") == 0 ||
                 strcmp(domain, ".co") == 0 || strcmp(domain, ".uk") == 0 || strcmp(domain, ".ir") == 0) {
-            } else { // email checker 3
-                printf("(EC3) WRONG EMAIL\nPress any key to go back ...");
+            } else { // email checker 4
+                printf("(SEE4) :\nWRONG EMAIL!\nPress any key to return ...");
                 getch();
                 system("cls");
                 continue;
@@ -614,7 +620,7 @@ int sign_up() {
                 if (strcmp(temp->email, email) == 0) {
                     system("cls");
                     decorator1();
-                    printf("This Email already exists in the system\nPlease enter another email ...\nPress any key to continue\n");
+                    printf("(SEE5) : \nThis Email already exists in the system\nPlease enter another email ...\nPress any key to continue\n");
                     decorator1();
                     getch();
                     count2 += 1;
@@ -647,7 +653,7 @@ int sign_up() {
                 decorator1();
 
                 printf("Entered Phone Number :");
-                scanf("%s", phone_number);
+                gets(phone_number);
                 fflush(stdin);
                 strlwr(phone_number);
 
@@ -659,28 +665,28 @@ int sign_up() {
 
                 if (count3 != 0) {
                     system("cls");
-                    printf("You can only enter number here\nPress any key to return ...");
+                    printf("(SEPN1) : \nYou can only enter number here\nPress any key to return ...");
                     getch();
                     system("cls");
                     continue;
                 }
 
                 if (strlen(phone_number) < 10 || strlen(phone_number) > 11) {
-                    printf("\nWRONG PHONE NUMBER !!!\nPress any key to return ...");
+                    printf("(SEPN2) : \nWRONG PHONE NUMBER !!!\nPress any key to return ...");
                     getch();
                     system("cls");
                     continue;
                 }
 
                 if ((strlen(phone_number) == 11) && (phone_number[0] != '0')) {
-                    printf("\nWRONG PHONE NUMBER !!!\nPress any key to return ...");
+                    printf("(SEPN3) : \nWRONG PHONE NUMBER !!!\nPress any key to return ...");
                     getch();
                     system("cls");
                     continue;
                 }
 
                 if ((strlen(phone_number) == 10) && (phone_number[0] == '0')) {
-                    printf("\nWRONG PHONE NUMBER !!!\nPress any key to return ...");
+                    printf("(SEPN4) : \nWRONG PHONE NUMBER !!!\nPress any key to return ...");
                     getch();
                     system("cls");
                     continue;
@@ -728,7 +734,7 @@ int sign_up() {
                     if (strcmp(temp->phone_number, phone_number) == 0) {
                         system("cls");
                         decorator1();
-                        printf("This phone number already exists in the system\n"
+                        printf("(SEPN5) : \nThis phone number already exists in the system\n"
                                "Please enter another phone number ...\nPress any"
                                " key to continue\n");
                         decorator1();
@@ -772,7 +778,7 @@ int sign_up() {
             fflush(stdin);
 
             if (strlen(pw_1) < 6) { // pw len checker
-                printf("(P1) Your password is too short !\nPress any key to go back ...");
+                printf("(SEP1) :\nYour password is too short !\nPress any key to go back ...");
                 getch();
                 system("cls");
                 continue;
@@ -805,7 +811,7 @@ int sign_up() {
             }
 
             if (count1 == 0 || count2 == 0 || count3 == 0) {
-                printf("(P2) Your password must contain characters, numbers and special characters !\n"
+                printf("(SEP2) :\nYour password must contain characters, numbers and special characters !\n"
                        "Press any key to go back ...");
                 getch();
                 system("cls");
@@ -836,7 +842,7 @@ int sign_up() {
 
             if (strcmp(pw_1, pw_2) != 0) {
                 system("cls");
-                printf("(P3) The entered passwords are not the same !\n"
+                printf("(SEP3) :\nThe entered passwords are not the same !\n"
                        "Press any key to go back ...");
                 getch();
                 system("cls");
@@ -886,9 +892,9 @@ int residential_property_fwriter(int rent_or_sell) {
     printf("Please Enter The Type Of The Building\n\n\n\n8) Back\n");
     decorator1();
     printf("Type :");
-    scanf("%s", type);
-    fflush(stdin);
+    gets(type);
     strlwr(type);
+    space_converter(type);
 
     if (strcmp("back", type) == 0 || strcmp("8", type) == 0) {
         system("cls");
@@ -3830,6 +3836,7 @@ int all_files_reader(int i) {
         fscanf(fp, "%*s %s\n", temp1->owner_phone_number);
         fscanf(fp, "%*s %s\n", temp1->rooms);
         fscanf(fp, "%*s %s\n", temp1->type);
+        space_returner(temp1->type);
         fscanf(fp, "%*s %d\n", &temp1->price);
         fscanf(fp, "%*s %s\n", temp1->creator_username);
         fscanf(fp, "%*s %d %*c %d %*c %d %d %*c %d\n",
@@ -3913,6 +3920,7 @@ int all_files_reader(int i) {
         fscanf(fp, "%*s %s\n", temp2->owner_phone_number);
         fscanf(fp, "%*s %s\n", temp2->rooms);
         fscanf(fp, "%*s %s\n", temp2->type);
+        space_returner(temp2->type);
         fscanf(fp, "%*s %d\n", &temp2->price);
         fscanf(fp, "%*s %d %*c %d %*c %d %d %*c %d\n",
                &temp2->date[0], &temp2->date[1], &temp2->date[2], &temp2->time[0], &temp2->time[1]);
@@ -3991,6 +3999,7 @@ int all_files_reader(int i) {
         fscanf(fp, "%*s %s\n", temp3->land_meterage);
         fscanf(fp, "%*s %s\n", temp3->owner_phone_number);
         fscanf(fp, "%*s %s\n", temp3->type);
+        space_returner(temp3->type);
         fscanf(fp, "%*s %d\n", &temp3->price);
         fscanf(fp, "%*s %s\n", temp3->creator_username);
         fscanf(fp, "%*s %d %*c %d %*c %d %d %*c %d\n",
@@ -4073,6 +4082,7 @@ int all_files_reader(int i) {
         fscanf(fp, "%*s %s\n", temp4->owner_phone_number);
         fscanf(fp, "%*s %s\n", temp4->rooms);
         fscanf(fp, "%*s %s\n", temp4->type);
+        space_returner(temp4->type);
         fscanf(fp, "%*s %d\n", &temp4->mortgage);
         fscanf(fp, "%*s %d\n", &temp4->rental_price);
         fscanf(fp, "%*s %s\n", temp4->creator_username);
@@ -4160,6 +4170,7 @@ int all_files_reader(int i) {
         fscanf(fp, "%*s %s\n", temp5->owner_phone_number);
         fscanf(fp, "%*s %s\n", temp5->rooms);
         fscanf(fp, "%*s %s\n", temp5->type);
+        space_returner(temp5->type);
         fscanf(fp, "%*s %d\n", &temp5->mortgage);
         fscanf(fp, "%*s %d\n", &temp5->rental_price);
         fscanf(fp, "%*s %d %*c %d %*c %d %d %*c %d\n",
@@ -4241,6 +4252,7 @@ int all_files_reader(int i) {
         fscanf(fp, "%*s %s\n", temp6->land_meterage);
         fscanf(fp, "%*s %s\n", temp6->owner_phone_number);
         fscanf(fp, "%*s %s\n", temp6->type);
+        space_returner(temp6->type);
         fscanf(fp, "%*s %d\n", &temp6->rental_price);
         fscanf(fp, "%*s %d\n", &temp6->mortgage);
         fscanf(fp, "%*s %s\n", temp6->creator_username);
@@ -4602,6 +4614,7 @@ int remove_sell_property() {
                 fscanf(fp, "%*s %s\n", temp->owner_phone_number);
                 fscanf(fp, "%*s %s\n", temp->rooms);
                 fscanf(fp, "%*s %s\n", temp->type);
+                space_returner(temp->type);
                 fscanf(fp, "%*s %d\n", &temp->price);
                 fscanf(fp, "%*s %s\n", temp->creator_username);
                 fscanf(fp, "%*s %d %*c %d %*c %d %d %*c %d\n",
@@ -4725,6 +4738,7 @@ int remove_sell_property() {
                     fscanf(fp, "%*s %s\n", temp->owner_phone_number);
                     fscanf(fp, "%*s %s\n", temp->rooms);
                     fscanf(fp, "%*s %s\n", temp->type);
+                    space_returner(temp->type);
                     fscanf(fp, "%*s %d\n", &temp->price);
                     fscanf(fp, "%*s %s\n", temp->creator_username);
                     fscanf(fp, "%*s %d %*c %d %*c %d %d %*c %d\n",
@@ -4840,6 +4854,7 @@ int remove_sell_property() {
                         fscanf(fp, "%*s %s\n", temp->land_meterage);
                         fscanf(fp, "%*s %s\n", temp->owner_phone_number);
                         fscanf(fp, "%*s %s\n", temp->type);
+                        space_returner(temp->type);
                         fscanf(fp, "%*s %d\n", &temp->price);
                         fscanf(fp, "%*s %s\n", temp->creator_username);
                         fscanf(fp, "%*s %d %*c %d %*c %d %d %*c %d\n",
@@ -5005,6 +5020,7 @@ int remove_rent_property() {
                 fscanf(fp, "%*s %s\n", temp->owner_phone_number);
                 fscanf(fp, "%*s %s\n", temp->rooms);
                 fscanf(fp, "%*s %s\n", temp->type);
+                space_returner(temp->type);
                 fscanf(fp, "%*s %d\n", &temp->mortgage);
                 fscanf(fp, "%*s %d\n", &temp->rental_price);
                 fscanf(fp, "%*s %s\n", temp->creator_username);
@@ -5132,6 +5148,7 @@ int remove_rent_property() {
                     fscanf(fp, "%*s %s\n", temp->owner_phone_number);
                     fscanf(fp, "%*s %s\n", temp->rooms);
                     fscanf(fp, "%*s %s\n", temp->type);
+                    space_returner(temp->type);
                     fscanf(fp, "%*s %d\n", &temp->mortgage);
                     fscanf(fp, "%*s %d\n", &temp->rental_price);
                     fscanf(fp, "%*s %s\n", temp->creator_username);
@@ -5253,6 +5270,7 @@ int remove_rent_property() {
                         fscanf(fp, "%*s %s\n", temp->land_meterage);
                         fscanf(fp, "%*s %s\n", temp->owner_phone_number);
                         fscanf(fp, "%*s %s\n", temp->type);
+                        space_returner(temp->type);
                         fscanf(fp, "%*s %d\n", &temp->mortgage);
                         fscanf(fp, "%*s %d\n", &temp->rental_price);
                         fscanf(fp, "%*s %s\n", temp->creator_username);
@@ -5749,6 +5767,7 @@ int profile() {
                                 temp->phone_number[0] = '0';
                             }
                             //*
+                            break;
                         }
 
                         encrypter(temp->phone_number);
