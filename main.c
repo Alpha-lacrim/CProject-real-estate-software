@@ -7,37 +7,211 @@
 #include <stdbool.h>
 #include <time.h>
 
-#define FILENAME_SIZE 32
+#define SCREEN_WIDTH 78
+#define FILENAME_SIZE 128
 #define MAX_LINE 256
 
 char *log_username_ptr, *log_pw_ptr, *log_role_ptr;
 
+static const char *DATA_FILES[] = {
+        "user_info.txt",
+        "sell_residential_properties.txt",
+        "rent_residential_properties.txt",
+        "sell_office_properties.txt",
+        "rent_office_properties.txt",
+        "sell_land_properties.txt",
+        "rent_land_properties.txt"
+};
+
+static void print_line(char character) {
+    int i;
+
+    for (i = 0; i < SCREEN_WIDTH; i++) {
+        putchar(character);
+    }
+    putchar('\n');
+}
+
+static char *to_lowercase(char *str) {
+    size_t i;
+
+    if (str == NULL) {
+        return NULL;
+    }
+
+    for (i = 0; str[i] != '\0'; i++) {
+        str[i] = (char) tolower((unsigned char) str[i]);
+    }
+
+    return str;
+}
+
+static void clear_console(void) {
+    HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO screen;
+    DWORD written;
+    DWORD cells;
+    COORD home = {0, 0};
+
+    if (console == INVALID_HANDLE_VALUE || !GetConsoleScreenBufferInfo(console, &screen)) {
+        printf("\033[2J\033[H");
+        return;
+    }
+
+    cells = (DWORD) screen.dwSize.X * (DWORD) screen.dwSize.Y;
+    FillConsoleOutputCharacter(console, ' ', cells, home, &written);
+    FillConsoleOutputAttribute(console, screen.wAttributes, cells, home, &written);
+    SetConsoleCursorPosition(console, home);
+}
+
+static int run_system_command(const char *command) {
+    if (command != NULL && strcmp(command, "cls") == 0) {
+        clear_console();
+        return 0;
+    }
+
+    return system(command);
+}
+
+static int flush_input_stream(FILE *stream) {
+    int ch;
+
+    if (stream == stdin) {
+        while ((ch = getchar()) != '\n' && ch != EOF) {
+        }
+        return 0;
+    }
+
+    return fflush(stream);
+}
+
+static char *read_line(char *buffer, size_t size) {
+    size_t length;
+
+    if (buffer == NULL || size == 0) {
+        return buffer;
+    }
+
+    if (fgets(buffer, (int) size, stdin) == NULL) {
+        buffer[0] = '\0';
+        return buffer;
+    }
+
+    length = strcspn(buffer, "\n");
+    if (buffer[length] == '\n') {
+        buffer[length] = '\0';
+    }
+    else {
+        flush_input_stream(stdin);
+    }
+
+    return buffer;
+}
+
+static int read_password(char *buffer, size_t size) {
+    int ch;
+    size_t length = 0;
+
+    if (buffer == NULL || size == 0) {
+        return 0;
+    }
+
+    while ((ch = _getch()) != '\r' && ch != '\n') {
+        if (ch == '\b') {
+            if (length > 0) {
+                length--;
+                printf("\b \b");
+            }
+            continue;
+        }
+
+        if (isprint((unsigned char) ch) && length + 1 < size) {
+            buffer[length++] = (char) ch;
+            putchar('*');
+        }
+    }
+
+    buffer[length] = '\0';
+    putchar('\n');
+    return 1;
+}
+
+static int logical_feof(FILE *stream) {
+    int ch;
+
+    if (stream == NULL) {
+        return 1;
+    }
+
+    do {
+        ch = fgetc(stream);
+        if (ch == EOF) {
+            return 1;
+        }
+    } while (isspace((unsigned char) ch));
+
+    ungetc(ch, stream);
+    return 0;
+}
+
+static FILE *open_file_checked(const char *filename, const char *mode) {
+    FILE *fp = fopen(filename, mode);
+
+    if (fp == NULL && filename != NULL && mode != NULL && strchr(mode, 'r') != NULL) {
+        FILE *creator = fopen(filename, "a");
+        if (creator != NULL) {
+            fclose(creator);
+            fp = fopen(filename, mode);
+        }
+    }
+
+    return fp;
+}
+
+static int initialize_data_files(void) {
+    size_t i;
+
+    for (i = 0; i < sizeof(DATA_FILES) / sizeof(DATA_FILES[0]); i++) {
+        FILE *fp = fopen(DATA_FILES[i], "a");
+        if (fp == NULL) {
+            printf("FILE ERROR: Could not create %s\n", DATA_FILES[i]);
+            return 0;
+        }
+        fclose(fp);
+    }
+
+    return 1;
+}
+
+static void configure_console(void) {
+    SetConsoleTitleA("Real Estate Management System");
+}
+
+#define strlwr to_lowercase
+#define getch _getch
+#define gets(buffer) read_line((buffer), sizeof(buffer))
+#define fflush(stream) flush_input_stream(stream)
+#define system(command) run_system_command(command)
+#define feof(stream) logical_feof(stream)
+#define fopen(filename, mode) open_file_checked((filename), (mode))
+
 
 void decorator1() {
-    int i;
-    for (i = 0; i <= 40; i++) { // Decorator
-        printf("*-");
-    }
-    putchar('*');
-    printf("\n");
+    print_line('=');
 }
 
 
 void decorator2() {
-    int i;
-    for (i = 0; i <= 25; i++) {
-        printf("*+-");
-    }
-    printf("*\n");
+    print_line('-');
 }
 
 
 void fdecorator1(FILE *fp) {
     int i;
-    for (i = 0; i <= 20; i++) {
-        fprintf(fp, "*-");
+    for (i = 0; i < 42; i++) {
+        fputc('-', fp);
     }
-    fprintf(fp, "*\n");
+    fputc('\n', fp);
 }
 
 
@@ -117,12 +291,12 @@ void time_fwriter(FILE *fp, int i) {
 }
 
 
-char time_string_converter(char time_str[100]) {
+void time_string_converter(char time_str[100]) {
     time_t t = time(NULL);
     struct tm date = *localtime(&t);
 
-    sprintf(time_str, "%d-%02d-%02d %02d:%02d",
-            date.tm_year + 1900, date.tm_mon + 1, date.tm_mday, date.tm_hour, date.tm_min);
+    snprintf(time_str, 100, "%d-%02d-%02d %02d:%02d",
+             date.tm_year + 1900, date.tm_mon + 1, date.tm_mday, date.tm_hour, date.tm_min);
 }
 
 
@@ -130,8 +304,8 @@ int file_updater(char filename[FILENAME_SIZE], int replace_line, char replace[MA
     char temp_filename[FILENAME_SIZE], buffer[MAX_LINE];
     int current_line = 1;
     FILE *fp, *fp_temp;
-    strcpy(temp_filename, "temp_");
-    strcat(temp_filename, filename);
+
+    snprintf(temp_filename, sizeof(temp_filename), "temp_%s", filename);
 
 
     fp = fopen(filename, "r");
@@ -139,46 +313,43 @@ int file_updater(char filename[FILENAME_SIZE], int replace_line, char replace[MA
 
     if (fp_temp == NULL || fp == NULL) {
         printf("FILE ERROR: FILE CAN NOT BE OPENED");
+        if (fp != NULL) {
+            fclose(fp);
+        }
+        if (fp_temp != NULL) {
+            fclose(fp_temp);
+        }
         return 1;
     }
 
-    bool reading = true;
-
-    do {
-        fgets(buffer, MAX_LINE, fp);
-
-        if (feof(fp)) {
-            reading = false;
+    while (fgets(buffer, MAX_LINE, fp) != NULL) {
+        if (current_line == replace_line) {
+            fputs(replace, fp_temp);
+            fputc('\n', fp_temp);
         }
         else {
-            if (current_line == replace_line) {
-
-                fprintf(fp_temp, replace);
-                fprintf(fp_temp, "\n");
-            }
-
-            else {
-                fputs(buffer, fp_temp);
-            }
+            fputs(buffer, fp_temp);
         }
 
         current_line += 1;
-
-    } while (reading);
+    }
 
     fclose(fp);
     fclose(fp_temp);
 
-    remove(filename);
-    rename(temp_filename, filename);
+    if (remove(filename) != 0 || rename(temp_filename, filename) != 0) {
+        printf("FILE ERROR: FILE CAN NOT BE UPDATED");
+        return 1;
+    }
 
+    return 0;
 }
 
 
 int sign_up() {
     char username[50], name[50], last_name[100], email[200], phone_number[120], role[30], citizen_id[20];
     char pw_1[80], pw_2[80], pw_cpy[80];
-    char domain[5], input_BD[12], choice[5], owner_pw[80], input_pw[80], ch;
+    char domain[16], input_BD[12], choice[32], owner_pw[80], input_pw[80];
     int birthdate[3] = {0, 0, 0};
     int i, j, z, count1, count2, count3, loop_checker;
     FILE *fp;
@@ -205,15 +376,7 @@ int sign_up() {
             printf("Enter The Password :");
 
 
-            for (i = 0, loop_checker = 0; (ch = _getch()) != 13; i++) {
-                if (ch == 8) {
-                    loop_checker += 1;
-                    break;
-                }
-                input_pw[i] = ch;
-                printf("*");
-            }
-            input_pw[i] = '\0';
+            loop_checker = read_password(input_pw, sizeof(input_pw)) == 0;
             if (loop_checker != 0) {
                 printf("\nAn error occurred");
                 system("cls");
@@ -349,7 +512,7 @@ int sign_up() {
 
             decorator1();
 
-            for (count1 = 0, i = 0; i <= strlen(name); i++) {
+            for (count1 = 0, i = 0; i < strlen(name); i++) {
                 if (isdigit(name[i]) != 0) {
                     count1 += 1;
                 }
@@ -397,7 +560,7 @@ int sign_up() {
                 continue;
             }
 
-            for (count2 = 0, i = 0; i <= strlen(last_name); i++) {
+            for (count2 = 0, i = 0; i < strlen(last_name); i++) {
                 if (isdigit(last_name[i]) != 0) {
                     count2 += 1;
                 }
@@ -486,7 +649,7 @@ int sign_up() {
 
                 printf("\nYear : %d, Month : %d, Day : %d\n", birthdate[0], birthdate[1], birthdate[2]);
                 printf("Do you want to continue?\n");
-                scanf("%s", choice);
+                scanf("%31s", choice);
                 fflush(stdin);
                 strlwr(choice);
                 if (strcmp(choice, "no") == 0) {
@@ -564,14 +727,11 @@ int sign_up() {
                 continue;
             }
 
-            for (i = z, j = 0, count1 = 0; i < strlen(email); i++, j++) {
+            for (i = z, j = 0, count1 = 0; email[i] != '\0' && j < (int) sizeof(domain) - 1; i++, j++) {
                 domain[j] = email[i];
                 count1 += 1;
             }
-
-            for (i = count1; i <= 10; i++) {
-                domain[i] = (char)NULL;
-            }
+            domain[j] = '\0';
 
             if (strcmp(domain, ".net") == 0 || strcmp(domain, ".com") == 0 || strcmp(domain, ".org") == 0 ||
                 strcmp(domain, ".co") == 0 || strcmp(domain, ".uk") == 0 || strcmp(domain, ".ir") == 0) {
@@ -868,6 +1028,7 @@ int sign_up() {
         getch();
         break;
     }
+    return 0;
 }
 
 
@@ -1287,6 +1448,7 @@ int residential_property_fwriter(int rent_or_sell) {
             return 0;
         }
     }
+    return 0;
 }
 
 
@@ -1706,6 +1868,7 @@ int office_property_fwriter(int rent_or_sell) {
             return 0;
         }
     }
+    return 0;
 }
 
 
@@ -2010,6 +2173,7 @@ int land_property_fwriter(int rent_or_sell) {
             return 0;
         }
     }
+    return 0;
 }
 
 
@@ -2056,7 +2220,7 @@ int searching_filter(int building_or_land) {
 
 
 int sell() {
-    char choice [10];
+    char choice[32];
     while (1) {
         decorator1();
         printf("\t\t\t\t   SELL\n");
@@ -2067,7 +2231,7 @@ int sell() {
         printf("\n\n8) Back\n");
         decorator1();
         printf("Your Choice :");
-        scanf("%s", choice);
+        scanf("%31s", choice);
         fflush(stdin);
         strlwr(choice);
 
@@ -2100,11 +2264,12 @@ int sell() {
             }
         }
     }
+    return 0;
 }
 
 
 int rent() { // this function is for give a property on rent
-    char choice [10];
+    char choice[32];
 
     while (1) {
         decorator1();
@@ -2116,7 +2281,7 @@ int rent() { // this function is for give a property on rent
         printf("\n\n8) Back\n");
         decorator1();
         printf("Your Choice :");
-        scanf("%s", choice);
+        scanf("%31s", choice);
         fflush(stdin);
         strlwr(choice);
 
@@ -2153,11 +2318,12 @@ int rent() { // this function is for give a property on rent
             }
         }
     }
+    return 0;
 }
 
 
 int sell_reports() {
-    char choice[10], decorator_skip[30];
+    char choice[32], decorator_skip[30];
     char input_NO_rooms[10], input_municipal_area[10];
     int input_building_lifespan_max, input_base_meterage_max, input_price_max;
     int input_building_lifespan_min, input_base_meterage_min, input_price_min;
@@ -2175,7 +2341,7 @@ int sell_reports() {
         printf("\n\n8) Back\n");
         decorator1();
         printf("Your choice :");
-        scanf("%s", choice);
+        scanf("%31s", choice);
         fflush(stdin);
         strlwr(choice);
 
@@ -2902,11 +3068,12 @@ int sell_reports() {
             }
         }
     }
+    return 0;
 }
 
 
 int rent_reports() {
-    char choice[10], decorator_skip[30];
+    char choice[32], decorator_skip[30];
     char input_NO_rooms[10], input_municipal_area[10];
     int input_building_lifespan_max, input_base_meterage_max, input_mortgage_max, input_rental_price_max;
     int input_building_lifespan_min, input_base_meterage_min, input_mortgage_min, input_rental_price_min;
@@ -2924,7 +3091,7 @@ int rent_reports() {
         printf("\n\n8) Back\n");
         decorator1();
         printf("Your choice :");
-        scanf("%s", choice);
+        scanf("%31s", choice);
         fflush(stdin);
         strlwr(choice);
 
@@ -3722,6 +3889,7 @@ int rent_reports() {
             }
         }
     }
+    return 0;
 }
 
 
@@ -4351,11 +4519,12 @@ int all_files_reader(int i) {
     getch();
     system("cls");
 
+    return 0;
 }
 
 
 int admin_menu() {
-    char choice[20], userlist[100][50] = {0};
+    char choice[32], userlist[100][50] = {0};
     int current_date[3], current_time[2];
     int NO_users = 0, i, j = 0, list_checker = 0, mortgage_total_value = 0, price_total_value = 0;
     FILE *fp_user, *fp;
@@ -4443,7 +4612,7 @@ int admin_menu() {
         printf("8) Back\n");
         decorator2();
         printf(">> Your Choice :");
-        scanf("%s", choice);
+        scanf("%31s", choice);
         fflush(stdin);
         strlwr(choice);
         system("cls");
@@ -4488,11 +4657,12 @@ int admin_menu() {
             }
         }
     }
+    return 0;
 }
 
 
 int add_item() {
-    char choice[10];
+    char choice[32];
 
     while (1) {
         decorator1();
@@ -4503,7 +4673,7 @@ int add_item() {
         printf("\n\n\n8) Back\n");
         decorator1();
         printf("Your Choice :");
-        scanf("%s", choice);
+        scanf("%31s", choice);
         fflush(stdin);
         strlwr(choice);
         system("cls");
@@ -4533,15 +4703,16 @@ int add_item() {
             }
         }
     }
+    return 0;
 }
 
 
 int remove_sell_property() {
-    char choice[10], decorator_skip[30];
+    char choice[32], decorator_skip[30];
     int input_price, total_value = 0;
     int searching_choice, loop_checker = 0, input_NO_property;
     int NO_property[3] = {0}; // 1st index : all properties, 2nd : active properties, 3rd : deactive  properties
-    char username[50] = "REMOVED_BY: ", date[50] = "REMOVED_ON: ", time_str[100];
+    char username[128], date[128], time_str[100];
     FILE *fp;
 
     while (1) {
@@ -4555,7 +4726,7 @@ int remove_sell_property() {
         printf("\n\n8) Back\n");
         decorator1();
         printf("Your Choice :");
-        scanf("%s", choice);
+        scanf("%31s", choice);
         fflush(stdin);
         strlwr(choice);
 
@@ -4657,9 +4828,9 @@ int remove_sell_property() {
             scanf("%d", &input_NO_property);
 
             if (input_NO_property <= NO_property[0] && input_NO_property > 0) {
-                strcat(username, log_username_ptr);
                 time_string_converter(time_str);
-                strcat(date, time_str);
+                snprintf(username, sizeof(username), "REMOVED_BY: %s", log_username_ptr);
+                snprintf(date, sizeof(date), "REMOVED_ON: %s", time_str);
                 file_updater("sell_residential_properties.txt", 1 + (input_NO_property - 1) * 14, "STATUS: DEACTIVE");
                 file_updater("sell_residential_properties.txt", 12 + (input_NO_property - 1) * 14, username);
                 file_updater("sell_residential_properties.txt", 13 + (input_NO_property - 1) * 14, date);
@@ -4781,9 +4952,9 @@ int remove_sell_property() {
 
 
                 if (input_NO_property <= NO_property[0] && input_NO_property > 0) {
-                    strcat(username, log_username_ptr);
                     time_string_converter(time_str);
-                    strcat(date, time_str);
+                    snprintf(username, sizeof(username), "REMOVED_BY: %s", log_username_ptr);
+                    snprintf(date, sizeof(date), "REMOVED_ON: %s", time_str);
                     file_updater("sell_office_properties.txt", 1 + (input_NO_property - 1) * 14, "STATUS: DEACTIVE");
                     file_updater("sell_office_properties.txt", 12 + (input_NO_property - 1) * 14, username);
                     file_updater("sell_office_properties.txt", 13 + (input_NO_property - 1) * 14, date);
@@ -4893,9 +5064,9 @@ int remove_sell_property() {
 
 
                     if (input_NO_property <= NO_property[0] && input_NO_property > 0) {
-                        strcat(username, log_username_ptr);
                         time_string_converter(time_str);
-                        strcat(date, time_str);
+                        snprintf(username, sizeof(username), "REMOVED_BY: %s", log_username_ptr);
+                        snprintf(date, sizeof(date), "REMOVED_ON: %s", time_str);
                         file_updater("sell_land_properties.txt", 1 + (input_NO_property - 1) * 10, "STATUS: DEACTIVE");
                         file_updater("sell_land_properties.txt", 8 + (input_NO_property - 1) * 10, username);
                         file_updater("sell_land_properties.txt", 9 + (input_NO_property - 1) * 10, date);
@@ -4934,15 +5105,16 @@ int remove_sell_property() {
             }
         }
     }
+    return 0;
 }
 
 
 int remove_rent_property() {
-    char choice[10], decorator_skip[30];
+    char choice[32], decorator_skip[30];
     int input_price, total_value = 0;
     int searching_choice, loop_checker = 0, input_NO_property;
     int NO_property[3] = {0}; // 1st index : all properties, 2nd : active properties, 3rd : deactive  properties
-    char username[50], date[50], time_str[100];
+    char username[128], date[128], time_str[100];
     FILE *fp;
 
     while (1) {
@@ -4956,7 +5128,7 @@ int remove_rent_property() {
         printf("\n\n8) Back\n");
         decorator1();
         printf("Your choice :");
-        scanf("%s", choice);
+        scanf("%31s", choice);
         fflush(stdin);
         strlwr(choice);
 
@@ -5063,11 +5235,9 @@ int remove_rent_property() {
 
 
             if (input_NO_property <= NO_property[0] && input_NO_property > 0) {
-                strcpy(username, "REMOVED_BY: ");
-                strcpy(date, "REMOVED_ON: ");
-                strcat(username, log_username_ptr);
                 time_string_converter(time_str);
-                strcat(date, time_str);
+                snprintf(username, sizeof(username), "REMOVED_BY: %s", log_username_ptr);
+                snprintf(date, sizeof(date), "REMOVED_ON: %s", time_str);
                 file_updater("rent_residential_properties.txt", 1 + (input_NO_property - 1) * 15, "STATUS: DEACTIVE");
                 file_updater("rent_residential_properties.txt", 13 + (input_NO_property - 1) * 15, username);
                 file_updater("rent_residential_properties.txt", 14 + (input_NO_property - 1) * 15, date);
@@ -5191,11 +5361,9 @@ int remove_rent_property() {
 
 
                 if (input_NO_property <= NO_property[0] && input_NO_property > 0) {
-                    strcpy(username, "REMOVED_BY: ");
-                    strcpy(date, "REMOVED_ON: ");
-                    strcat(username, log_username_ptr);
                     time_string_converter(time_str);
-                    strcat(date, time_str);
+                    snprintf(username, sizeof(username), "REMOVED_BY: %s", log_username_ptr);
+                    snprintf(date, sizeof(date), "REMOVED_ON: %s", time_str);
                     file_updater("rent_office_properties.txt", 1 + (input_NO_property - 1) * 15, "STATUS: DEACTIVE");
                     file_updater("rent_office_properties.txt", 13 + (input_NO_property - 1) * 15, username);
                     file_updater("rent_office_properties.txt", 14 + (input_NO_property - 1) * 15, date);
@@ -5310,11 +5478,9 @@ int remove_rent_property() {
 
 
                     if (input_NO_property <= NO_property[0] && input_NO_property > 0) {
-                        strcpy(username, "REMOVED_BY: ");
-                        strcpy(date, "REMOVED_ON: ");
-                        strcat(username, log_username_ptr);
                         time_string_converter(time_str);
-                        strcat(date, time_str);
+                        snprintf(username, sizeof(username), "REMOVED_BY: %s", log_username_ptr);
+                        snprintf(date, sizeof(date), "REMOVED_ON: %s", time_str);
                         file_updater("rent_land_properties.txt", 1 + (input_NO_property - 1) * 11, "STATUS: DEACTIVE");
                         file_updater("rent_land_properties.txt", 9 + (input_NO_property - 1) * 11, username);
                         file_updater("rent_land_properties.txt", 10 + (input_NO_property - 1) * 11, date);
@@ -5353,11 +5519,12 @@ int remove_rent_property() {
             }
         }
     }
+    return 0;
 }
 
 
 int remove_item() {
-    char choice[10];
+    char choice[32];
 
     while (1) {
         decorator1();
@@ -5368,7 +5535,7 @@ int remove_item() {
         printf("\n\n\n8) Back\n");
         decorator1();
         printf("Your Choice :");
-        scanf("%s", choice);
+        scanf("%31s", choice);
         fflush(stdin);
         strlwr(choice);
         system("cls");
@@ -5396,11 +5563,12 @@ int remove_item() {
             }
         }
     }
+    return 0;
 }
 
 
 int reports() {
-    char choice[10];
+    char choice[32];
 
     while (1) {
         decorator1();
@@ -5414,7 +5582,7 @@ int reports() {
         printf("\n\n\n8) Back\n");
         decorator1();
         printf("Your choice :");
-        scanf("%s", choice);
+        scanf("%31s", choice);
         fflush(stdin);
         strlwr(choice);
         system("cls");
@@ -5429,7 +5597,9 @@ int reports() {
             }
 
             else {
-                if ((strcmp(choice, "admin menu") == 0 && strcmp(log_role_ptr, "admin") == 0 ) || (strcmp(choice, "3") == 0 && strcmp(log_role_ptr, "admin") == 0)) {
+                if ((strcmp(choice, "admin") == 0 && strcmp(log_role_ptr, "admin") == 0) ||
+                    (strcmp(choice, "adminmenu") == 0 && strcmp(log_role_ptr, "admin") == 0) ||
+                    (strcmp(choice, "3") == 0 && strcmp(log_role_ptr, "admin") == 0)) {
                     admin_menu();
                 }
                 else {
@@ -5447,12 +5617,13 @@ int reports() {
             }
         }
     }
+    return 0;
 }
 
 
 int profile() {
-    char choice[20], newline1[128] = {0}, newline2[128] = {0};
-    char domain[5], pw_1[80], pw_2[80];
+    char choice[32], newline1[128] = {0}, newline2[128] = {0};
+    char domain[16], pw_1[80], pw_2[80];
     int line, NO_user = 0;
     int i, j, z, err_count1 = 0, err_count2 = 0, err_count3 = 0;
     FILE *fp;
@@ -5469,7 +5640,7 @@ int profile() {
         printf("8) Back\n");
         decorator1();
         printf("Your choice :");
-        scanf("%s", choice);
+        scanf("%31s", choice);
         fflush(stdin);
         strlwr(choice);
 
@@ -5663,14 +5834,12 @@ int profile() {
                             continue;
                         }
 
-                        for (i = z, j = 0, err_count1 = 0; i < strlen(temp->email); i++, j++) {
+                        for (i = z, j = 0, err_count1 = 0;
+                             temp->email[i] != '\0' && j < (int) sizeof(domain) - 1; i++, j++) {
                             domain[j] = temp->email[i];
                             err_count1 += 1;
                         }
-
-                        for (i = err_count1; i <= 10; i++) {
-                            domain[i] = (char) NULL;
-                        }
+                        domain[j] = '\0';
 
                         if (strcmp(domain, ".net") == 0 || strcmp(domain, ".com") == 0 || strcmp(domain, ".org") == 0 ||
                             strcmp(domain, ".co") == 0 || strcmp(domain, ".uk") == 0 || strcmp(domain, ".ir") == 0) {
@@ -5867,35 +6036,49 @@ int profile() {
         break;
     }
 
+    return 0;
 }
 
 
 int main() {
-    char choice[10];
-    char log_username[50], log_pw[80], log_role[20], ch;
-    int loop_checker1 = 0, loop_checker2 = 0, loop_checker3 = 0, i, log_checker = 0;
+    char choice[32];
+    char log_username[50], log_pw[80], log_role[20];
+    int loop_checker1 = 0, loop_checker2 = 0, loop_checker3 = 0;
     FILE *fp;
 
+    configure_console();
+    if (!initialize_data_files()) {
+        printf("Press any key to exit ...");
+        getch();
+        return 1;
+    }
+
     while (1) {
+        loop_checker2 = 0;
+        loop_checker3 = 0;
+
         system("cls");
-        printf("\t\t\t\t   WELCOME !\n");
         decorator1();
-        printf("\t\t\t  Please Select Your Choice\n");
+        printf("                     REAL ESTATE MANAGEMENT SYSTEM\n");
         decorator1();
-        printf("1) SIGN UP\n2) SIGN IN\n\n\n9) Exit\n");
+        printf("  1) Sign up\n");
+        printf("  2) Sign in\n\n");
+        printf("  9) Exit\n");
 
         decorator1();
 
         printf(">> Your Choice :");
-        scanf("%s", choice);
+        scanf("%31s", choice);
+        fflush(stdin);
+        strlwr(choice);
         system("cls");
 
-        if ((strcmp(choice, "1") == 0) || (strcmp(strlwr(choice), "sign up") == 0)) {
+        if (strcmp(choice, "1") == 0 || strcmp(choice, "signup") == 0 || strcmp(choice, "register") == 0) {
             sign_up();
             system("cls");
             continue;
 
-        } else if ((strcmp(choice, "2") == 0) || (strcmp(strlwr(choice), "sign in") == 0)) {
+        } else if (strcmp(choice, "2") == 0 || strcmp(choice, "signin") == 0 || strcmp(choice, "login") == 0) {
             //*- sign in *-
             while (1) {
                 decorator1();
@@ -5904,7 +6087,7 @@ int main() {
                 printf("Enter Your Username\n\n\n\n8) Back\n");
                 decorator1();
                 printf(">> Entered Username :");
-                scanf("%s", log_username);
+                scanf("%49s", log_username);
                 fflush(stdin);
                 strlwr(log_username);
                 system("cls");
@@ -5920,15 +6103,7 @@ int main() {
                 decorator1();
                 printf(">> Entered Password :");
 
-                for (i = 0, loop_checker1 = 0; (ch = _getch()) != 13; i++) {
-                    if (ch == 8) {
-                        loop_checker1 += 1;
-                        break;
-                    }
-                    log_pw[i] = ch;
-                    printf("*");
-                }
-                log_pw[i] = '\0';
+                loop_checker1 = read_password(log_pw, sizeof(log_pw)) == 0;
                 fflush(stdin);
 
                 if (loop_checker1 != 0) {
@@ -5975,7 +6150,6 @@ int main() {
                         loop_checker1 += 1;
                         strcpy(log_role, temp->role);
 
-                        fclose(fp);
                         break;
                     }
 
@@ -5991,6 +6165,9 @@ int main() {
                 }
 
                 if (loop_checker1 == 0) {
+                    if (fp != NULL) {
+                        fclose(fp);
+                    }
                     printf("\nNo Results Found\nPress any key to return ...");
                     getch();
                     system("cls");
@@ -6012,9 +6189,10 @@ int main() {
                     getch();
                     printf("\n\n\n\n\nPress any key to continue ...");
                     system("cls");
-                    fclose(fp);
+                    if (fp != NULL) {
+                        fclose(fp);
+                    }
                     free(temp);
-                    log_checker += 1;
                     break;
                 }
             } //*- sign in *-
@@ -6023,7 +6201,7 @@ int main() {
                 continue;
             }
 
-        } else if ((strcmp(choice, "9") == 0) || (strcmp(strlwr(choice), "exit") == 0)) {
+        } else if (strcmp(choice, "9") == 0 || strcmp(choice, "exit") == 0 || strcmp(choice, "quit") == 0) {
             printf("Thanks for using <3\nGoodbye !");
             getch();
             break;
@@ -6038,31 +6216,31 @@ int main() {
 
         while (1) {
             decorator1();
-            printf("\t\t\t\t   MAIN MENU\n");
+            printf("                              MAIN MENU\n");
             decorator1();
-            printf("1) Add Item\n");
-            printf("2) Remove Item\n");
-            printf("3) Reports\n");
-            printf("4) Profile\n\n\n\n");
-            printf("8) Exit From The Account\n");
-            printf("9) Exit From The Program\n");
+            printf("  1) Add item\n");
+            printf("  2) Remove item\n");
+            printf("  3) Reports\n");
+            printf("  4) Profile\n\n");
+            printf("  8) Sign out\n");
+            printf("  9) Exit program\n");
             decorator1();
 
             printf(">> Your Choice :");
-            scanf("%s", choice);
+            scanf("%31s", choice);
             fflush(stdin);
             strlwr(choice);
             system("cls");
 
-            if (strcmp(choice, "add item") == 0 || strcmp(choice, "1") == 0) {
+            if (strcmp(choice, "add") == 0 || strcmp(choice, "additem") == 0 || strcmp(choice, "1") == 0) {
                 add_item();
 
             } else {
-                if (strcmp(choice, "delete item") == 0 || strcmp(choice, "2") == 0) {
+                if (strcmp(choice, "remove") == 0 || strcmp(choice, "delete") == 0 || strcmp(choice, "2") == 0) {
                     remove_item();
 
                 } else {
-                    if (strcmp(choice, "reports") == 0 || strcmp(choice, "3") == 0) {
+                    if (strcmp(choice, "report") == 0 || strcmp(choice, "reports") == 0 || strcmp(choice, "3") == 0) {
                         reports();
 
                     } else {
@@ -6070,7 +6248,7 @@ int main() {
                             profile();
 
                         } else {
-                            if (strcmp(choice, "exit") == 0 || strcmp(choice, "9") == 0) {
+                            if (strcmp(choice, "exit") == 0 || strcmp(choice, "quit") == 0 || strcmp(choice, "9") == 0) {
                                 system("cls");
                                 decorator1();
                                 printf("Thanks for using <3\nGoodbye !\n");
@@ -6079,7 +6257,8 @@ int main() {
                                 return 0;
 
                             } else {
-                                if (strcmp(choice, "back") == 0 || strcmp(choice, "8") == 0) {
+                                if (strcmp(choice, "back") == 0 || strcmp(choice, "logout") == 0 ||
+                                    strcmp(choice, "signout") == 0 || strcmp(choice, "8") == 0) {
                                     loop_checker3 += 1;
                                     break;
                                 } else {
@@ -6099,4 +6278,5 @@ int main() {
         }
         break;
     }
+    return 0;
 }
